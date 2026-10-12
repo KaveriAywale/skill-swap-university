@@ -15,7 +15,7 @@ import {
   BadgeCheck,
 } from 'lucide-react';
 import Brand from '../components/Brand';
-import { Button } from '../components/ui';
+import { Button, Avatar } from '../components/ui';
 import { CATEGORY_META } from '../lib/utils';
 
 const fadeUp = {
@@ -137,12 +137,7 @@ export default function Landing() {
                     transition={{ delay: 0.9 + i * 0.2 }}
                     className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3"
                   >
-                    <span
-                      className="flex h-9 w-9 items-center justify-center rounded-lg"
-                      style={{ background: `${p.color}22`, color: p.color }}
-                    >
-                      {p.emoji}
-                    </span>
+                    <Avatar name={p.name} size={36} />
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-semibold">
                         {p.name} can teach <span className="text-lime">{p.skill}</span>

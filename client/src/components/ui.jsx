@@ -1,4 +1,4 @@
-import { forwardRef, useId } from 'react';
+import { forwardRef, useId, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
@@ -219,15 +219,40 @@ export function StatusPill({ label, color }) {
 
 /* ------------------------------ Avatar ------------------------------ */
 
-export function Avatar({ src, name = '', size = 40, className = '' }) {
-  if (src) {
+// Animated, illustrated student avatars (no real human photos). A deterministic
+// cartoon character is generated from the student's name so the same student
+// always gets the same character, with a gentle motion applied for life.
+const AVATAR_STYLES = ['adventurer', 'open-peeps', 'big-smile', 'lorelei', 'notionists', 'personas'];
+const AVATAR_BG = ['b6e3f4', 'c0aede', 'd1d4f9', 'ffd5dc', 'ffdfbf', 'c8f7c5'];
+
+function hashString(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i += 1) h = (h * 31 + str.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+export function animatedAvatarUrl(name) {
+  const seed = encodeURIComponent((name || 'Skill Swap Student').trim());
+  const h = hashString(seed);
+  const style = AVATAR_STYLES[h % AVATAR_STYLES.length];
+  const backgroundColor = AVATAR_BG[h % AVATAR_BG.length];
+  return `https://api.dicebear.com/9.x/${style}/svg?seed=${seed}&backgroundColor=${backgroundColor}&radius=50`;
+}
+
+export function Avatar({ src, name = '', size = 40, className = '', animated = true }) {
+  const [failed, setFailed] = useState(false);
+  const url = src || animatedAvatarUrl(name);
+  if (url && !failed) {
     return (
       <img
-        src={src}
+        src={url}
         alt={name}
         loading="lazy"
+        onError={() => setFailed(true)}
         style={{ width: size, height: size }}
-        className={`shrink-0 rounded-full border border-white/10 object-cover ${className}`}
+        className={`shrink-0 rounded-full border border-white/15 bg-midnight-700 object-cover ${
+          animated ? 'animate-bob motion-reduce:animate-none' : ''
+        } ${className}`}
       />
     );
   }

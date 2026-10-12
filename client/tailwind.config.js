@@ -73,6 +73,10 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        bob: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-3px)' },
+        },
         'gradient-x': {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
@@ -83,6 +87,7 @@ export default {
         shimmer: 'shimmer 1.4s linear infinite',
         pop: 'pop 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.4) both',
         float: 'float 5s ease-in-out infinite',
+        bob: 'bob 4s ease-in-out infinite',
         'gradient-x': 'gradient-x 6s ease infinite',
       },
     },

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { MapPin, Clock, PencilLine, Trash2, Video, MessageSquare } from 'lucide-react';
 import Page from '../components/Page';
 import { MatchCard } from '../components/cards';
-import { Button, Card, Chip, Modal, Skeleton, EmptyState, ErrorState, StatusPill, Field, Input, Select } from '../components/ui';
+import { Button, Card, Chip, Modal, Skeleton, EmptyState, ErrorState, StatusPill, Field, Input, Select, Avatar } from '../components/ui';
 import api, { extractError } from '../lib/api';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
@@ -132,7 +132,7 @@ export default function RequestDetail() {
           </div>
           {request.seeker ? (
             <div className="flex items-center gap-3 border-t border-white/10 pt-4">
-              <img src={request.seeker.avatar || ''} alt="" className="h-10 w-10 rounded-full bg-white/10 object-cover" />
+              <Avatar src={request.seeker.avatar} name={request.seeker.name} size={40} />
               <div>
                 <p className="text-sm font-semibold">{request.seeker.name}{isSeeker ? ' (you)' : ''}</p>
                 <p className="text-xs text-ivory/45">{request.seeker.department} · Yr {request.seeker.year}</p>
