@@ -8,6 +8,7 @@
     "server": "npm --prefix server run dev",
     "client": "npm --prefix client run dev",
     "seed": "npm --prefix server run seed",
+    "art": "npm --prefix server run art",
     "test": "npm --prefix server test",
     "lint": "npm --prefix server run lint && npm --prefix client run lint",
     "build": "npm --prefix client run build"

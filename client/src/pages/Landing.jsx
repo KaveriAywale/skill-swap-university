@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import Brand from '../components/Brand';
 import { Button, Avatar } from '../components/ui';
+import { useArtManifest } from '../lib/art';
 import { CATEGORY_META } from '../lib/utils';
 
 const fadeUp = {
@@ -39,6 +40,7 @@ const STEPS = [
 ];
 
 export default function Landing() {
+  const art = useArtManifest();
   return (
     <div className="min-h-screen bg-midnight-950">
       {/* Nav */}
@@ -64,9 +66,26 @@ export default function Landing() {
 
       {/* Hero */}
       <section className="relative overflow-hidden px-4 pb-20 pt-32 sm:px-6 sm:pt-40">
-        <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent-violet/20 blur-[130px]" />
-        <div className="pointer-events-none absolute right-0 top-40 h-[320px] w-[320px] rounded-full bg-lime/10 blur-[110px]" />
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[280px] w-[280px] rounded-full bg-lavender/10 blur-[100px]" />
+        {art?.hero ? (
+          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+            <img
+              src={art.hero}
+              alt=""
+              fetchPriority="high"
+              className="h-full w-full object-cover object-right"
+            />
+            <div className="absolute inset-0 bg-midnight-950/55" />
+            <div className="absolute inset-0 bg-gradient-to-r from-midnight-950 via-midnight-950/85 to-midnight-950/20" />
+            <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-midnight-950 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-midnight-950 to-transparent" />
+          </div>
+        ) : (
+          <>
+            <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent-violet/20 blur-[130px]" />
+            <div className="pointer-events-none absolute right-0 top-40 h-[320px] w-[320px] rounded-full bg-lime/10 blur-[110px]" />
+            <div className="pointer-events-none absolute bottom-0 left-0 h-[280px] w-[280px] rounded-full bg-lavender/10 blur-[100px]" />
+          </>
+        )}
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>

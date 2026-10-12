@@ -1,4 +1,4 @@
-import { forwardRef, useId, useState } from 'react';
+import { forwardRef, useId, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
@@ -48,6 +48,7 @@ import {
   Loader2,
 } from 'lucide-react';
 import { initials } from '../lib/utils';
+import { useArtManifest, slugifyName } from '../lib/art';
 
 /* ------------------------------ Icon map ------------------------------ */
 
@@ -240,15 +241,27 @@ export function animatedAvatarUrl(name) {
 }
 
 export function Avatar({ src, name = '', size = 40, className = '', animated = true }) {
-  const [failed, setFailed] = useState(false);
-  const url = src || animatedAvatarUrl(name);
-  if (url && !failed) {
+  const manifest = useArtManifest();
+  const [index, setIndex] = useState(0);
+
+  const localPortrait = manifest?.avatars?.[slugifyName(name)];
+  const sources = [];
+  if (src) sources.push(src);
+  if (localPortrait) sources.push(localPortrait);
+  sources.push(animatedAvatarUrl(name));
+
+  useEffect(() => {
+    setIndex(0);
+  }, [src, localPortrait, name]);
+
+  const url = sources[index];
+  if (url) {
     return (
       <img
         src={url}
         alt={name}
         loading="lazy"
-        onError={() => setFailed(true)}
+        onError={() => setIndex((i) => i + 1)}
         style={{ width: size, height: size }}
         className={`shrink-0 rounded-full border border-white/15 bg-midnight-700 object-cover ${
           animated ? 'animate-bob motion-reduce:animate-none' : ''

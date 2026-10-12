@@ -8,8 +8,9 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "seed": "node seeds/seed.js",
+    "art": "node scripts/generate-art.js",
     "test": "cross-env NODE_ENV=test jest --runInBand --forceExit",
-    "lint": "eslint src seeds --ext .js"
+    "lint": "eslint src seeds scripts --ext .js"
   },
   "keywords": [
     "mern",
