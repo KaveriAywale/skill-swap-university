@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Plus, Pause, Play, Archive } from 'lucide-react';
 import Page from '../components/Page';
@@ -82,7 +82,7 @@ export default function Offers() {
       ) : data.length === 0 ? (
         <EmptyState
           title="You haven't offered any skills yet"
-          description="Teaching is how the community grows â€” publish your first offer."
+          description="Teaching is how the community grows — publish your first offer."
           action={<Button size="sm" onClick={() => navigate('/offers/new')}>Offer a skill</Button>}
         />
       ) : (
@@ -101,7 +101,7 @@ export default function Offers() {
                 </div>
                 <div>
                   <h3 className="font-display font-semibold">{offer.title}</h3>
-                  <p className="text-xs text-ivory/50">{offer.skill?.name} Â· {offer.level} Â· {offer.format}</p>
+                  <p className="text-xs text-ivory/50">{offer.skill?.name} · {offer.level} · {offer.format}</p>
                   {offer.verified ? (
                     <Chip className="mt-2 !text-[11px] text-lime" color="#2563EB">Assessment-verified</Chip>
                   ) : null}
@@ -129,7 +129,7 @@ export default function Offers() {
 
       <div className="mt-8">
         <Link to="/discover" className="text-sm font-semibold text-lime hover:underline">
-          â† Browse students looking for your skills
+          ← Browse students looking for your skills
         </Link>
       </div>
     </Page>

@@ -1,9 +1,8 @@
 'use strict';
 
 /**
- * Fictional demo students used by the seeder and by the illustration generator
- * (`npm run art`). Kept in one place so the demo names, the seeded records and
- * the generated anime portraits always stay in sync.
+ * Fictional demo students used by the seeder. Kept in one place so the demo
+ * names and the seeded records always stay in sync.
  *
  * Shape: [name, department, headline, bio, teach[], learn[]]
  */

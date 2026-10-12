@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CalendarDays, Play, CheckCheck, Video } from 'lucide-react';
 import Page from '../components/Page';
@@ -61,7 +61,7 @@ export default function Sessions() {
       subtitle="Scheduled and past learning sessions."
       actions={
         <Link to="/requests" className="text-sm font-semibold text-lime hover:underline">
-          Find help â†’
+          Find help →
         </Link>
       }
     >
@@ -106,7 +106,7 @@ export default function Sessions() {
                         <div className="min-w-0">
                           <p className="truncate font-semibold">{s.title}</p>
                           <p className="truncate text-xs text-ivory/50">
-                            with {other?.name} Â· {s.skill?.name}
+                            with {other?.name} · {s.skill?.name}
                           </p>
                         </div>
                       </div>
@@ -144,6 +144,6 @@ export default function Sessions() {
 }
 
 function formatDate(iso) {
-  if (!iso) return 'â€”';
+  if (!iso) return '—';
   return new Date(iso).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 }

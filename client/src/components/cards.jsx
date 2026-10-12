@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Star, MapPin, BadgeCheck, Clock, Users, MessageSquare, Zap } from 'lucide-react';
 import { Card, Chip, Avatar, SkillIcon, StatusPill, Button } from './ui';
 import { CATEGORY_META, REQUEST_STATUS, timeAgo } from '../lib/utils';
@@ -49,7 +49,7 @@ export function SkillCard({ skill, offerCount = 0, children }) {
           to={`/discover?skill=${skill?._id}`}
           className="text-xs font-semibold text-lime opacity-0 transition group-hover:opacity-100"
         >
-          Meet helpers â†’
+          Meet helpers →
         </Link>
       </div>
     </Card>
@@ -72,7 +72,7 @@ export function StudentCard({ student }) {
             {student.name}
           </Link>
           <p className="truncate text-xs text-ivory/50">
-            {student.department} Â· Yr {student.year}
+            {student.department} · Yr {student.year}
           </p>
           {student.headline ? <p className="mt-0.5 truncate text-xs text-ivory/65">{student.headline}</p> : null}
         </div>
@@ -93,7 +93,7 @@ export function StudentCard({ student }) {
 
       <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-ivory/55">
         <span className="flex items-center gap-1">
-          <Star size={13} className="text-accent-amber" /> {avg ? avg.toFixed(1) : 'â€”'}
+          <Star size={13} className="text-accent-amber" /> {avg ? avg.toFixed(1) : '—'}
         </span>
         <span className="flex items-center gap-1">
           <Users size={13} /> {student.stats?.completedSessions || 0} sessions
@@ -113,7 +113,7 @@ export function StudentCard({ student }) {
       <div className="mt-auto flex items-center justify-between pt-4">
         <AvailabilityDots availability={student.availability || []} />
         <Link to={`/profile/${student.id}`} className="text-xs font-semibold text-lime">
-          View â†’
+          View →
         </Link>
       </div>
     </Card>
@@ -180,7 +180,7 @@ export function MatchCard({ match, onMessage, onAccept, busy }) {
             {helper.name}
           </Link>
           <p className="text-xs text-ivory/50">
-            {helper.department} Â· Yr {helper.year}
+            {helper.department} · Yr {helper.year}
           </p>
           <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-ivory/60">
             <span className="flex items-center gap-1">

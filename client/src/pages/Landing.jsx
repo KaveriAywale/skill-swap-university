@@ -15,8 +15,7 @@ import {
   BadgeCheck,
 } from 'lucide-react';
 import Brand from '../components/Brand';
-import { Button, Avatar } from '../components/ui';
-import { useArtManifest } from '../lib/art';
+import { Button, Avatar, SkillIcon } from '../components/ui';
 import { CATEGORY_META } from '../lib/utils';
 
 const fadeUp = {
@@ -27,22 +26,28 @@ const fadeUp = {
 };
 
 const HERO_PREVIEW = [
-  { name: 'Aarav', skill: 'React', emoji: 'âš›ï¸', hint: 'Available Thu 6 PM', place: '1F / 380m', color: '#4F46E5' },
-  { name: 'Sana', skill: 'Arduino', emoji: 'ðŸ¤–', hint: 'Online Â· ready now', place: 'CS Lab / 90m', color: '#E11D48' },
-  { name: 'Priya', skill: 'MongoDB', emoji: 'ðŸƒ', hint: 'Online Â· ready now', place: 'Library / 210m', color: '#0891B2' },
+  { name: 'Aarav', skill: 'React', hint: 'Available Thu 6 PM', place: '1F / 380m', color: '#4F46E5' },
+  { name: 'Sana', skill: 'Arduino', hint: 'Online · ready now', place: 'CS Lab / 90m', color: '#E11D48' },
+  { name: 'Priya', skill: 'MongoDB', hint: 'Online · ready now', place: 'Library / 210m', color: '#0891B2' },
 ];
 
 const STEPS = [
-  { icon: Search, title: 'Ask for help', text: 'Post a request for a skill you need â€” from exam prep to Python debugging.' },
+  { icon: Search, title: 'Ask for help', text: 'Post a request for a skill you need — from exam prep to Python debugging.' },
   { icon: CalendarClock, title: 'Match smartly', text: 'Our engine ranks peers by skill, availability and closeness, then shows you why.' },
   { icon: MessageCircle, title: 'Chat & schedule', text: 'Talk, agree on a time and meet online or at a campus spot.' },
-  { icon: Video, title: 'Learn together', text: 'Hold the session â€” live video for online, your chosen meeting area in person.' },
+  { icon: Video, title: 'Learn together', text: 'Hold the session — live video for online, your chosen meeting area in person.' },
 ];
 
 export default function Landing() {
-  const art = useArtManifest();
   return (
-    <div className="min-h-screen bg-midnight-950">
+    <div className="relative min-h-screen overflow-hidden bg-midnight-950">
+      <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+        <div className="absolute inset-0 bg-grid opacity-[0.5]" />
+        <div className="absolute -top-32 left-1/4 h-[520px] w-[520px] rounded-full bg-lime/20 blur-[150px] animate-float" />
+        <div className="absolute right-0 top-24 h-[460px] w-[460px] rounded-full bg-accent-violet/20 blur-[150px] animate-float [animation-delay:-2s]" />
+        <div className="absolute bottom-0 left-0 h-[420px] w-[420px] rounded-full bg-lavender/20 blur-[140px] animate-float [animation-delay:-4s]" />
+      </div>
+
       {/* Nav */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-midnight-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
@@ -66,38 +71,24 @@ export default function Landing() {
 
       {/* Hero */}
       <section className="relative overflow-hidden px-4 pb-20 pt-32 sm:px-6 sm:pt-40">
-        {art?.hero ? (
-          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-            <img
-              src={art.hero}
-              alt=""
-              fetchPriority="high"
-              className="h-full w-full object-cover object-right"
-            />
-            <div className="absolute inset-0 bg-midnight-950/55" />
-            <div className="absolute inset-0 bg-gradient-to-r from-midnight-950 via-midnight-950/85 to-midnight-950/20" />
-            <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-midnight-950 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-midnight-950 to-transparent" />
-          </div>
-        ) : (
-          <>
-            <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent-violet/20 blur-[130px]" />
-            <div className="pointer-events-none absolute right-0 top-40 h-[320px] w-[320px] rounded-full bg-lime/10 blur-[110px]" />
-            <div className="pointer-events-none absolute bottom-0 left-0 h-[280px] w-[280px] rounded-full bg-lavender/10 blur-[100px]" />
-          </>
-        )}
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute -top-40 left-1/2 h-[560px] w-[880px] -translate-x-1/2 rounded-full bg-accent-violet/20 blur-[130px] animate-float" />
+          <div className="absolute right-0 top-40 h-[340px] w-[340px] rounded-full bg-lime/15 blur-[110px] animate-float [animation-delay:-3s]" />
+          <div className="absolute bottom-0 left-0 h-[300px] w-[300px] rounded-full bg-lavender/15 blur-[100px] animate-float [animation-delay:-1.5s]" />
+          <div className="absolute inset-0 bg-grid opacity-[0.35]" />
+        </div>
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="chip border-lime/30 bg-lime/10 text-lime">
-              <Sparkles size={13} /> Peer-to-peer learning Â· Your campus
+              <Sparkles size={13} /> Peer-to-peer learning · Your campus
             </span>
             <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl">
               Every student knows something.{' '}
               <span className="text-gradient">Every student needs something.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-ivory/65">
-              Skill Swap University connects students on campus who can teach each other â€” no
+              Skill Swap University connects students on campus who can teach each other — no
               credits, no cash, just peer learning done right.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -120,7 +111,15 @@ export default function Landing() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="relative"
           >
-            <div className="card relative overflow-hidden p-6">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-8 -z-10 rounded-[3rem] opacity-60 blur-3xl animate-pulse-glow"
+              style={{
+                background:
+                  'conic-gradient(from 120deg, rgba(37,99,235,0.55), rgba(124,58,237,0.45), rgba(14,165,233,0.55), rgba(37,99,235,0.55))',
+              }}
+            />
+            <div className="card-glass relative overflow-hidden p-6">
               <div className="flex items-center justify-between">
                 <p className="font-display font-semibold">Campus discovery</p>
                 <span className="chip border-lavender/30 text-lavender">
@@ -143,7 +142,7 @@ export default function Landing() {
                     />
                   ))}
                   <span className="absolute left-[46%] top-[58%] flex h-3 w-3 rounded-full bg-lime shadow-glow" />
-                  <span className="absolute bottom-2 left-2 chip !text-[10px]">â— live Â· 3 helpers near you</span>
+                  <span className="absolute bottom-2 left-2 chip !text-[10px]">● live · 3 helpers near you</span>
                 </div>
               </div>
 
@@ -170,12 +169,30 @@ export default function Landing() {
 
               <div className="mt-4 flex items-center justify-between">
                 <p className="text-xs text-ivory/45">Match reason</p>
-                <p className="text-xs font-semibold text-lime">âœ“ Matches skill Â· âœ“ Nearby</p>
+                <p className="text-xs font-semibold text-lime">✓ Matches skill · ✓ Nearby</p>
               </div>
             </div>
             <div className="absolute -right-3 -top-3 rotate-6 rounded-xl bg-lime px-3 py-1.5 font-display text-xs font-bold text-midnight-950 shadow-glow">
               No cash. Ever.
             </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.3 }}
+              className="absolute -left-5 top-28 hidden animate-float rounded-xl border border-white/10 bg-midnight-800/90 px-3 py-2 shadow-card backdrop-blur sm:block"
+            >
+              <p className="text-[10px] uppercase tracking-wider text-ivory/45">Karma earned</p>
+              <p className="font-display text-sm font-bold text-lime">+18</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.5 }}
+              className="absolute -bottom-5 -left-4 hidden animate-float rounded-xl border border-white/10 bg-midnight-800/90 px-3 py-2 shadow-card backdrop-blur [animation-delay:-2s] sm:block"
+            >
+              <p className="text-[10px] uppercase tracking-wider text-ivory/45">Verified tutor</p>
+              <p className="font-display text-sm font-bold text-lavender">Trust 92%</p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -185,7 +202,7 @@ export default function Landing() {
         <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">How matching works</h2>
           <p className="mt-3 text-ivory/60">
-            A transparent scoring system weighs skill fit, availability and distance â€” so you
+            A transparent scoring system weighs skill fit, availability and distance — so you
             understand exactly why a helper was recommended.
           </p>
         </motion.div>
@@ -195,7 +212,7 @@ export default function Landing() {
               key={s.title}
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: i * 0.08 }}
-              className="card relative p-6"
+              className="gradient-border relative p-6"
             >
               <span className="absolute right-4 top-3 font-display text-4xl font-extrabold text-white/5">0{i + 1}</span>
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-lime/15 text-lime">
@@ -226,13 +243,13 @@ export default function Landing() {
                 key={key}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: i * 0.04 }}
-                className="card flex items-center gap-3 p-4"
+                className="card card-hover flex items-center gap-3 p-4"
               >
                 <span
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
                   style={{ background: `${cat.color}18`, color: cat.color }}
                 >
-                  <span className="text-xl">{['ðŸ’»', 'ðŸ§ ', 'ðŸ“', 'ðŸŽ¨', 'ðŸ–¥ï¸', 'ðŸ¤–', 'ðŸ—£ï¸', 'ðŸŽ¸'][i]}</span>
+                  <SkillIcon name={cat.icon} size={20} />
                 </span>
                 <div>
                   <p className="text-sm font-semibold leading-tight">{cat.name}</p>
@@ -297,7 +314,7 @@ export default function Landing() {
               </div>
             ))}
             <div className="mt-5 flex items-center gap-2 rounded-xl border border-lime/25 bg-lime/10 px-3 py-2 text-xs text-lime">
-              <BadgeCheck size={14} /> Badges: First Steps â†’ Helpful Hand â†’ Campus Legend
+              <BadgeCheck size={14} /> Badges: First Steps → Helpful Hand → Campus Legend
             </div>
           </motion.div>
         </div>
@@ -316,9 +333,9 @@ export default function Landing() {
             {[
               ['College email sign-up', 'Accounts are tied to an approved student email or identifier.'],
               ['Rated, reviewed, verified', 'Helper history, peer reviews and assessment-based skill checks stay visible.'],
-              ['Privacy-aware locations', 'We never expose exact GPS positions â€” only approximate campus labels.'],
+              ['Privacy-aware locations', 'We never expose exact GPS positions — only approximate campus labels.'],
             ].map(([t, d]) => (
-              <motion.div key={t} {...fadeUp} className="card p-6">
+              <motion.div key={t} {...fadeUp} className="gradient-border p-6">
                 <h3 className="font-display font-semibold">{t}</h3>
                 <p className="mt-1.5 text-sm text-ivory/55">{d}</p>
               </motion.div>
@@ -336,7 +353,7 @@ export default function Landing() {
             <span className="text-gradient"> Are you?</span>
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl text-ivory/60">
-            Join the peer learning community â€” find help tonight, teach someone tomorrow.
+            Join the peer learning community — find help tonight, teach someone tomorrow.
           </p>
           <div className="relative mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/register">
@@ -361,7 +378,7 @@ export default function Landing() {
           </div>
         </div>
         <p className="mt-6 text-center text-xs text-ivory/30">
-          Â© {new Date().getFullYear()} Skill Swap University Â· An MCA academic prototype
+          © {new Date().getFullYear()} Skill Swap University · An MCA academic prototype
         </p>
       </footer>
     </div>

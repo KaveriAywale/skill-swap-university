@@ -79,7 +79,7 @@ export default function Dashboard() {
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
-            {greeting()}, {user?.name?.split(' ')[0]} <span className="text-lime">✨</span>
+            {greeting()}, {user?.name?.split(' ')[0]} <SkillIcon name="Sparkles" size={18} className="inline text-lime" />
           </h1>
           <p className="mt-1 text-sm text-ivory/55">
             {user?.headline || `Let's find something to learn or share today.`}

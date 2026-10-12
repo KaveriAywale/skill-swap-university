@@ -282,36 +282,6 @@ Verification produces an **assessment-based indicator**, clearly labelled as suc
 Passing (`AI_PASS_THRESHOLD`) marks matching offers as verified, adds a verified
 badge, and awards karma.
 
-## AI illustrations (anime movie style)
-
-The site ships with tasteful built-in illustrations and works fully offline:
-every student without an uploaded photo gets a deterministic **animated cartoon
-avatar**, and the landing hero uses a styled gradient scene.
-
-For original anime-movie-style artwork you can generate the assets with OpenAI
-Images and the site will pick them up automatically:
-
-1. Set in `server/.env`:
-   ```
-   OPENAI_API_KEY=sk-...
-   ART_IMAGE_PROVIDER=openai
-   ART_IMAGE_MODEL=gpt-image-1   # or dall-e-3
-   ```
-2. From the project root:
-   ```powershell
-   npm run art              # cinematic hero + all 16 demo portraits
-   npm run art -- --hero    # only the hero background
-   npm run art -- --limit=4 # first 4 portraits (cheap test)
-   npm run art -- --force   # regenerate existing files
-   ```
-
-Generated files are written to `client/public/art/` plus a `manifest.json`.
-The front-end reads that manifest at runtime: the hero uses the generated
-image, and each portrait is matched to its student by name. If no key is set
-(or the manifest is missing) the app silently falls back to the built-in
-illustrations, so nothing breaks. All prompts live in
-`server/src/services/artService.js`.
-
 ## Real-time & WebRTC
 
 Socket.IO authenticates with the same JWT and uses these rooms:

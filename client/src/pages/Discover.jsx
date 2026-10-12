@@ -4,7 +4,7 @@ import { LayoutGrid, List, Map as MapIcon } from 'lucide-react';
 import Page from '../components/Page';
 import CampusMap from '../components/CampusMap';
 import { StudentCard } from '../components/cards';
-import { Button, Card, Select, Skeleton, EmptyState, ErrorState } from '../components/ui';
+import { Button, Card, Select, Skeleton, EmptyState, ErrorState, SkillIcon } from '../components/ui';
 import api, { extractError } from '../lib/api';
 import { useAuth } from '../context/AuthContext';
 import { CATEGORY_META, DAYS } from '../lib/utils';
@@ -159,7 +159,7 @@ export default function Discover() {
               className="chip transition"
               style={active ? { borderColor: `${meta?.color}66`, background: `${meta?.color}1E`, color: meta?.color } : undefined}
             >
-              {cat.key === 'programming' ? '💻' : cat.key === 'ai-data' ? '🧠' : cat.key === 'mathematics' ? '📐' : cat.key === 'design' ? '🎨' : cat.key === 'hardware' ? '🖥️' : cat.key === 'robotics' ? '🤖' : cat.key === 'languages' ? '🗣️' : '🎸'}
+              <SkillIcon name={meta?.icon} size={14} />
               {cat.name}
             </button>
           );

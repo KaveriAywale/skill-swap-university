@@ -1,4 +1,4 @@
-﻿import { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -78,7 +78,7 @@ export default function Onboarding() {
         setLocating(false);
       },
       () => {
-        showError('Location permission denied â€” we matched anyway using your skills and availability.');
+        showError('Location permission denied — we matched anyway using your skills and availability.');
         setLocating(false);
       },
       { timeout: 8000 }
@@ -106,7 +106,7 @@ export default function Onboarding() {
       await api.post('/offers', {
         skill: skillId,
         title: `${skill.name} peer mentoring`,
-        description: `I can help peers learn ${skill.name} â€” theory, practice and real projects.`,
+        description: `I can help peers learn ${skill.name} — theory, practice and real projects.`,
         level: 'Intermediate',
         format: 'both',
         availability,
@@ -135,7 +135,7 @@ export default function Onboarding() {
           : null,
       });
       await refresh();
-      showToast('Profile complete â€” welcome to the campus!');
+      showToast('Profile complete — welcome to the campus!');
       navigate('/dashboard');
     } catch (err) {
       showError(extractError(err, 'Could not save your profile'));
@@ -218,11 +218,11 @@ export default function Onboarding() {
                           <span>
                             Location enabled{' '}
                             <span className="text-ivory/45">
-                              Â· {location.label} <span className="font-mono text-xs">({location.coords.lng.toFixed(4)}, {location.coords.lat.toFixed(4)})</span>
+                              · {location.label} <span className="font-mono text-xs">({location.coords.lng.toFixed(4)}, {location.coords.lat.toFixed(4)})</span>
                             </span>
                           </span>
                         ) : (
-                          <span className="text-ivory/60">Not enabled yet â€” you can teach from anywhere else.</span>
+                          <span className="text-ivory/60">Not enabled yet — you can teach from anywhere else.</span>
                         )}
                       </div>
                       <div className="mt-3 flex flex-wrap gap-2">
@@ -234,7 +234,7 @@ export default function Onboarding() {
                         <Input value={location.label} onChange={(e) => setLocation((l) => ({ ...l, label: e.target.value }))} className="!w-52" placeholder="Meeting area label (e.g. Library)" />
                       </div>
                       <p className="mt-2 text-[11px] text-ivory/40">
-                        Only fuzzy labels are ever shown publicly â€” never your exact coordinates.
+                        Only fuzzy labels are ever shown publicly — never your exact coordinates.
                       </p>
                     </div>
                   </Field>
@@ -285,9 +285,9 @@ export default function Onboarding() {
                     ) : (
                       availability.map((a, i) => (
                         <Chip key={`${a.day}-${i}`} color="#2563EB">
-                          {a.day} {a.from}â€“{a.to}
+                          {a.day} {a.from}–{a.to}
                           <button onClick={() => setAvailability((prev) => prev.filter((_, idx) => idx !== i))} className="ml-1 text-ivory/50 hover:text-rose-300" aria-label="Remove slot">
-                            Ã—
+                            ×
                           </button>
                         </Chip>
                       ))
@@ -328,7 +328,7 @@ export default function Onboarding() {
                   </div>
                   <div className="rounded-xl border border-lime/25 bg-lime/10 p-4 text-sm text-lime">
                     <CheckCircle2 size={16} className="mr-2 inline" />
-                    You&apos;re moments away â€” finish to publish {teach.length} skill {teach.length === 1 ? 'offer' : 'offers'} and land on your dashboard.
+                    You&apos;re moments away — finish to publish {teach.length} skill {teach.length === 1 ? 'offer' : 'offers'} and land on your dashboard.
                   </div>
                 </div>
               ) : null}

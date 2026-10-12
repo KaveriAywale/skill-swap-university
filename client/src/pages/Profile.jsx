@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Star, MapPin, BadgeCheck, Flame, MessageSquare, Settings, GraduationCap, Users } from 'lucide-react';
 import Page from '../components/Page';
@@ -77,7 +77,7 @@ export default function Profile() {
                   {isMine ? <span className="ml-2 text-sm font-medium text-ivory/40">(you)</span> : null}
                 </h1>
                 <p className="text-sm text-ivory/55">
-                  {p.department} Â· Year {p.year} Â· {p.headline || 'Student'}
+                  {p.department} · Year {p.year} · {p.headline || 'Student'}
                 </p>
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function Profile() {
                 ))}
               </div>
             ) : (
-              <p className="mt-3 text-sm text-ivory/50">No reviews yet â€” completed sessions unlock ratings.</p>
+              <p className="mt-3 text-sm text-ivory/50">No reviews yet — completed sessions unlock ratings.</p>
             )}
           </Card>
         </div>
@@ -185,7 +185,7 @@ export default function Profile() {
                 {(p.availability || []).map((a, i) => (
                   <p key={i} className="text-sm text-ivory/65">
                     <span className="inline-block w-9 font-semibold text-lavender">{a.day}</span>
-                    {a.from}â€“{a.to}
+                    {a.from}–{a.to}
                   </p>
                 ))}
               </div>

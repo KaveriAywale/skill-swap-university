@@ -1,4 +1,4 @@
-import { forwardRef, useId, useState, useEffect } from 'react';
+import { forwardRef, useId, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
@@ -48,7 +48,6 @@ import {
   Loader2,
 } from 'lucide-react';
 import { initials } from '../lib/utils';
-import { useArtManifest, slugifyName } from '../lib/art';
 
 /* ------------------------------ Icon map ------------------------------ */
 
@@ -76,14 +75,14 @@ export const Button = forwardRef(function Button(
     'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:outline-2 disabled:opacity-60 disabled:pointer-events-none disabled:hover:translate-y-0';
   const variants = {
     primary:
-      'bg-lime text-midnight-950 hover:bg-lime-bright shadow-glow hover:shadow-[0_0_0_1px_rgba(37,99,235,0.45),0_18px_40px_-12px_rgba(37,99,235,0.6)] disabled:hover:bg-lime disabled:hover:shadow-glow',
+      'shine bg-lime text-midnight-950 hover:bg-lime-bright shadow-glow hover:shadow-[0_0_0_1px_rgba(37,99,235,0.45),0_18px_40px_-12px_rgba(37,99,235,0.6)] disabled:hover:bg-lime disabled:hover:shadow-glow',
     secondary:
       'border border-white/15 bg-white/5 text-ivory hover:bg-white/10 hover:border-lime/40',
     ghost: 'text-ivory/80 hover:bg-white/10 hover:text-ivory',
     danger:
       'border border-rose/40 bg-rose/10 text-rose-300 hover:bg-rose/20',
     lavender:
-      'bg-lavender text-midnight-950 hover:bg-lavender-soft shadow-glow hover:shadow-[0_0_0_1px_rgba(79,70,229,0.45),0_18px_40px_-12px_rgba(79,70,229,0.6)] disabled:hover:bg-lavender',
+      'shine bg-lavender text-midnight-950 hover:bg-lavender-soft shadow-glow hover:shadow-[0_0_0_1px_rgba(79,70,229,0.45),0_18px_40px_-12px_rgba(79,70,229,0.6)] disabled:hover:bg-lavender',
   };
   const sizes = {
     sm: 'text-xs px-3 py-1.5',
@@ -220,61 +219,58 @@ export function StatusPill({ label, color }) {
 
 /* ------------------------------ Avatar ------------------------------ */
 
-// Animated, illustrated student avatars (no real human photos). A deterministic
-// cartoon character is generated from the student's name so the same student
-// always gets the same character, with a gentle motion applied for life.
-const AVATAR_STYLES = ['adventurer', 'open-peeps', 'big-smile', 'lorelei', 'notionists', 'personas'];
-const AVATAR_BG = ['b6e3f4', 'c0aede', 'd1d4f9', 'ffd5dc', 'ffdfbf', 'c8f7c5'];
+// Refined monogram avatars — no photos and no cartoon characters. Each person
+// gets a stable gradient derived from their name, with crisp initials on top.
+const AVATAR_GRADIENTS = [
+  ['#2563EB', '#6366F1'],
+  ['#4F46E5', '#7C3AED'],
+  ['#0EA5E9', '#2563EB'],
+  ['#6366F1', '#DB2777'],
+  ['#0891B2', '#4F46E5'],
+  ['#7C3AED', '#2563EB'],
+  ['#059669', '#0EA5E9'],
+  ['#D97706', '#E11D48'],
+];
 
 function hashString(str) {
   let h = 0;
-  for (let i = 0; i < str.length; i += 1) h = (h * 31 + str.charCodeAt(i)) >>> 0;
+  const value = str || 'Skill Swap';
+  for (let i = 0; i < value.length; i += 1) h = (h * 31 + value.charCodeAt(i)) >>> 0;
   return h;
 }
 
-export function animatedAvatarUrl(name) {
-  const seed = encodeURIComponent((name || 'Skill Swap Student').trim());
-  const h = hashString(seed);
-  const style = AVATAR_STYLES[h % AVATAR_STYLES.length];
-  const backgroundColor = AVATAR_BG[h % AVATAR_BG.length];
-  return `https://api.dicebear.com/9.x/${style}/svg?seed=${seed}&backgroundColor=${backgroundColor}&radius=50`;
-}
+export function Avatar({ src, name = '', size = 40, className = '', ring = false }) {
+  const [failed, setFailed] = useState(false);
 
-export function Avatar({ src, name = '', size = 40, className = '', animated = true }) {
-  const manifest = useArtManifest();
-  const [index, setIndex] = useState(0);
-
-  const localPortrait = manifest?.avatars?.[slugifyName(name)];
-  const sources = [];
-  if (src) sources.push(src);
-  if (localPortrait) sources.push(localPortrait);
-  sources.push(animatedAvatarUrl(name));
-
-  useEffect(() => {
-    setIndex(0);
-  }, [src, localPortrait, name]);
-
-  const url = sources[index];
-  if (url) {
+  if (src && !failed) {
     return (
       <img
-        src={url}
+        src={src}
         alt={name}
         loading="lazy"
-        onError={() => setIndex((i) => i + 1)}
+        onError={() => setFailed(true)}
         style={{ width: size, height: size }}
-        className={`shrink-0 rounded-full border border-white/15 bg-midnight-700 object-cover ${
-          animated ? 'animate-bob motion-reduce:animate-none' : ''
-        } ${className}`}
+        className={`shrink-0 rounded-full border border-white/15 object-cover ${className}`}
       />
     );
   }
+
+  const [from, to] = AVATAR_GRADIENTS[hashString(name) % AVATAR_GRADIENTS.length];
   return (
     <span
-      style={{ width: size, height: size, fontSize: size * 0.36 }}
-      className={`flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-lavender/40 to-accent-violet/40 font-semibold text-ivory ${className}`}
+      aria-label={name}
+      style={{
+        width: size,
+        height: size,
+        fontSize: Math.max(10, size * 0.38),
+        backgroundImage: `linear-gradient(135deg, ${from}, ${to})`,
+      }}
+      className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-full font-display font-semibold tracking-wide text-[#fff] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] ${
+        ring ? 'ring-2 ring-white/70' : ''
+      } ${className}`}
     >
-      {initials(name)}
+      <span className="relative">{initials(name)}</span>
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent" />
     </span>
   );
 }

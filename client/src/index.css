@@ -10,6 +10,11 @@
   body {
     @apply bg-midnight-950 font-body text-ivory antialiased;
     text-rendering: optimizeLegibility;
+    background-image:
+      radial-gradient(60rem 42rem at 112% -12%, rgba(37, 99, 235, 0.12), transparent 62%),
+      radial-gradient(52rem 40rem at -12% 0%, rgba(124, 58, 237, 0.1), transparent 58%),
+      radial-gradient(46rem 36rem at 50% 120%, rgba(14, 165, 233, 0.1), transparent 60%);
+    background-attachment: fixed;
   }
 
   h1,
@@ -61,6 +66,26 @@
     @apply transition-all duration-300 hover:border-lime/40 hover:shadow-card-hover hover:-translate-y-1;
   }
 
+  /* Frosted card for hero / feature panels on tinted backgrounds. */
+  .card-glass {
+    @apply rounded-2xl border border-white/40 bg-midnight-800/70 shadow-card backdrop-blur-xl;
+  }
+
+  /* Card with an iridescent gradient border that warms up on hover. */
+  .gradient-border {
+    @apply relative rounded-2xl border border-transparent shadow-card transition-all duration-300;
+    background:
+      linear-gradient(#ffffff, #ffffff) padding-box,
+      linear-gradient(135deg, rgba(37, 99, 235, 0.5), rgba(124, 58, 237, 0.42), rgba(14, 165, 233, 0.5)) border-box;
+  }
+
+  .gradient-border:hover {
+    background:
+      linear-gradient(#ffffff, #ffffff) padding-box,
+      linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(124, 58, 237, 0.75), rgba(14, 165, 233, 0.9)) border-box;
+    @apply -translate-y-1 shadow-card-hover;
+  }
+
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-ivory/80;
   }
@@ -79,10 +104,56 @@
 
   .text-gradient {
     @apply bg-gradient-to-r from-lime via-accent-cyan to-lavender bg-clip-text text-transparent;
+    background-size: 200% auto;
+    @apply animate-gradient-x;
   }
 
   .icon-btn {
     @apply flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-ivory transition-all duration-200 hover:-translate-y-0.5 hover:border-lime/50 hover:text-lime hover:shadow-soft;
+  }
+
+  /* Subtle blueprint grid used on hero / empty areas. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(37, 99, 235, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.07) 1px, transparent 1px);
+    background-size: 46px 46px;
+  }
+
+  .bg-grid-fade {
+    -webkit-mask-image: radial-gradient(ellipse 78% 62% at 50% 0%, #000 28%, transparent 76%);
+    mask-image: radial-gradient(ellipse 78% 62% at 50% 0%, #000 28%, transparent 76%);
+  }
+
+  /* Button shine sweep on hover. */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 34%, rgba(255, 255, 255, 0.45) 50%, transparent 66%);
+    transform: translateX(-130%);
+    pointer-events: none;
+  }
+
+  .shine:hover::after {
+    animation: sheen 0.9s ease;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1.5px;
+    transition: background-size 0.3s ease;
+  }
+
+  .link-underline:hover {
+    background-size: 100% 1.5px;
   }
 
   .skeleton {

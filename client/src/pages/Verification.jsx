@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Sparkles, ShieldCheck, Award, ArrowLeft, CheckCircle2, XCircle } from 'lucide-react';
 import Page from '../components/Page';
 import { Button, Card, Chip, Field, Select, Textarea, Skeleton, StatusPill, SkillIcon, EmptyState, ProgressRing } from '../components/ui';
@@ -108,7 +108,7 @@ export default function Verification() {
                     className="mt-2"
                     value={answers[q.id] || ''}
                     onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))}
-                    placeholder="Type your answerâ€¦"
+                    placeholder="Type your answer…"
                   />
                 </div>
               ))}
@@ -190,7 +190,7 @@ export default function Verification() {
                 <p className="mt-1 text-sm text-ivory/60">
                   {meta.aiEnabled
                     ? 'An AI assessor will generate and grade a short assessment.'
-                    : 'Demo mode is active â€” a transparent local scorer grades your answers. Set AI_PROVIDER to enable real AI.'}
+                    : 'Demo mode is active — a transparent local scorer grades your answers. Set AI_PROVIDER to enable real AI.'}
                 </p>
                 <div className="mt-4 flex flex-wrap items-end gap-3">
                   <div className="min-w-[200px] flex-1">
@@ -227,7 +227,7 @@ export default function Verification() {
                       <div className="min-w-0 flex-1">
                         <p className="truncate font-semibold">{h.skill?.name}</p>
                         <p className="text-xs text-ivory/45">
-                          {h.status === 'evaluated' ? `Scored ${h.score}/100 Â· ${h.mode === 'ai' ? 'AI' : 'demo'}` : 'In progress'} Â· {timeAgo(h.createdAt)}
+                          {h.status === 'evaluated' ? `Scored ${h.score}/100 · ${h.mode === 'ai' ? 'AI' : 'demo'}` : 'In progress'} · {timeAgo(h.createdAt)}
                         </p>
                       </div>
                       {h.status === 'evaluated' ? (

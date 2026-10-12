@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ResponsiveContainer,
@@ -174,7 +174,7 @@ export default function Insights() {
 
       <div className="mt-6 text-center">
         <Link to="/leaderboard" className="text-sm font-semibold text-lime hover:underline">
-          See how you compare on the leaderboard â†’
+          See how you compare on the leaderboard →
         </Link>
       </div>
     </Page>

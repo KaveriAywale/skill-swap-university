@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Trophy, Medal, Crown, Flame } from 'lucide-react';
@@ -114,7 +114,7 @@ export default function Leaderboard() {
                         <p className="truncate text-sm font-semibold">
                           {person.name} {isMe ? <span className="text-lime">(you)</span> : null}
                         </p>
-                        <p className="truncate text-xs text-ivory/45">{person.department} Â· Year {person.year}</p>
+                        <p className="truncate text-xs text-ivory/45">{person.department} · Year {person.year}</p>
                       </div>
                       <span className="flex items-center gap-1 font-semibold text-lime">
                         <Flame size={14} /> {person.karma}
@@ -143,7 +143,7 @@ export default function Leaderboard() {
               <span>{myRank >= 0 ? `Rank #${myRank + 1}` : 'Not ranked yet'}</span>
               <span>{me?.transactions ?? 0} transactions</span>
             </div>
-            <Link to="/insights" className="mt-4 block text-sm font-semibold text-lime hover:underline">View your insights â†’</Link>
+            <Link to="/insights" className="mt-4 block text-sm font-semibold text-lime hover:underline">View your insights →</Link>
           </Card>
 
           <Card className="p-6">

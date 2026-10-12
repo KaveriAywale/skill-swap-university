@@ -238,7 +238,7 @@ function UserMenu() {
 function Sidebar() {
   const { user } = useAuth();
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-white/10 bg-midnight-900 px-4 py-5 lg:flex">
+    <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-white/10 bg-midnight-900/80 px-4 py-5 backdrop-blur-xl lg:flex">
       <Brand to="/dashboard" />
       <nav className="mt-8 flex-1 space-y-1">
         {NAV.map(({ to, label, icon: Icon }) => (
@@ -246,15 +246,24 @@ function Sidebar() {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
+              `group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
                 isActive
-                  ? 'bg-lime/15 text-lime'
+                  ? 'bg-gradient-to-r from-lime/20 to-lavender/10 font-semibold text-lime shadow-soft'
                   : 'text-ivory/65 hover:bg-white/5 hover:text-ivory'
               }`
             }
           >
-            <Icon size={18} />
-            {label}
+            {({ isActive }) => (
+              <>
+                <span
+                  className={`absolute left-0 top-1/2 h-5 w-1 -translate-y-1/2 rounded-r-full bg-lime transition-all ${
+                    isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
+                  }`}
+                />
+                <Icon size={18} className="transition-transform group-hover:scale-110" />
+                {label}
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
@@ -403,10 +412,11 @@ function QuickActions() {
 export default function AppLayout() {
   return (
     <div className="relative min-h-screen bg-midnight-950">
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-40 right-0 h-[460px] w-[460px] rounded-full bg-accent-violet/10 blur-[150px]" />
-        <div className="absolute bottom-0 left-40 h-[360px] w-[360px] rounded-full bg-lime/5 blur-[140px]" />
-        <div className="absolute left-1/3 top-1/3 h-[300px] w-[300px] rounded-full bg-lavender/5 blur-[130px]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-[0.5]" />
+        <div className="absolute -top-40 right-0 h-[460px] w-[460px] rounded-full bg-accent-violet/15 blur-[150px] animate-float" />
+        <div className="absolute bottom-0 left-40 h-[360px] w-[360px] rounded-full bg-lime/10 blur-[140px] animate-float [animation-delay:-2s]" />
+        <div className="absolute left-1/3 top-1/3 h-[300px] w-[300px] rounded-full bg-lavender/10 blur-[130px] animate-float [animation-delay:-4s]" />
       </div>
       <Sidebar />
       <MobileNav />
