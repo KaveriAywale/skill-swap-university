@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Trophy, Medal, Crown, Flame } from 'lucide-react';
@@ -80,8 +80,8 @@ export default function Leaderboard() {
                   if (!person) return <div key={order} />;
                   const rank = idx + 1;
                   const heights = ['h-32', 'h-28', 'h-24'];
-                  const colors = ['#F5B62D', '#C0C7D4', '#D08B5B'];
-                  const color = colors[idx] || '#A78BFA';
+                  const colors = ['#D97706', '#C0C7D4', '#D08B5B'];
+                  const color = colors[idx] || '#6366F1';
                   return (
                     <motion.div key={order} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: order * 0.08 }}>
                       <Link to={`/profile/${person.userId || person._id}`} className="block text-center">
@@ -114,7 +114,7 @@ export default function Leaderboard() {
                         <p className="truncate text-sm font-semibold">
                           {person.name} {isMe ? <span className="text-lime">(you)</span> : null}
                         </p>
-                        <p className="truncate text-xs text-ivory/45">{person.department} · Year {person.year}</p>
+                        <p className="truncate text-xs text-ivory/45">{person.department} Â· Year {person.year}</p>
                       </div>
                       <span className="flex items-center gap-1 font-semibold text-lime">
                         <Flame size={14} /> {person.karma}
@@ -143,7 +143,7 @@ export default function Leaderboard() {
               <span>{myRank >= 0 ? `Rank #${myRank + 1}` : 'Not ranked yet'}</span>
               <span>{me?.transactions ?? 0} transactions</span>
             </div>
-            <Link to="/insights" className="mt-4 block text-sm font-semibold text-lime hover:underline">View your insights →</Link>
+            <Link to="/insights" className="mt-4 block text-sm font-semibold text-lime hover:underline">View your insights â†’</Link>
           </Card>
 
           <Card className="p-6">

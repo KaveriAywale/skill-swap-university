@@ -1,34 +1,34 @@
-export const CATEGORY_META = {
-  programming: { name: 'Programming & Web Development', icon: 'Code2', accent: 'lavender', color: '#7C5CFF' },
-  'ai-data': { name: 'AI & Data Science', icon: 'BrainCircuit', accent: 'cyan', color: '#22D3EE' },
-  mathematics: { name: 'Mathematics & Academics', icon: 'Sigma', accent: 'amber', color: '#F59E0B' },
-  design: { name: 'Design & Creativity', icon: 'Palette', accent: 'pink', color: '#F472B6' },
-  hardware: { name: 'Hardware & IT Support', icon: 'Cpu', accent: 'sky', color: '#38BDF8' },
-  robotics: { name: 'Robotics & Electronics', icon: 'Bot', accent: 'rose', color: '#FB7185' },
-  languages: { name: 'Languages & Communication', icon: 'Languages', accent: 'emerald', color: '#34D399' },
-  arts: { name: 'Arts & Practical Skills', icon: 'Guitar', accent: 'lime', color: '#A3E635' },
+﻿export const CATEGORY_META = {
+  programming: { name: 'Programming & Web Development', icon: 'Code2', accent: 'lavender', color: '#4F46E5' },
+  'ai-data': { name: 'AI & Data Science', icon: 'BrainCircuit', accent: 'cyan', color: '#0891B2' },
+  mathematics: { name: 'Mathematics & Academics', icon: 'Sigma', accent: 'amber', color: '#D97706' },
+  design: { name: 'Design & Creativity', icon: 'Palette', accent: 'pink', color: '#DB2777' },
+  hardware: { name: 'Hardware & IT Support', icon: 'Cpu', accent: 'sky', color: '#0284C7' },
+  robotics: { name: 'Robotics & Electronics', icon: 'Bot', accent: 'rose', color: '#E11D48' },
+  languages: { name: 'Languages & Communication', icon: 'Languages', accent: 'emerald', color: '#059669' },
+  arts: { name: 'Arts & Practical Skills', icon: 'Guitar', accent: 'lime', color: '#65A30D' },
 };
 
 export const URGENCY_META = {
-  low: { label: 'Low', color: '#34D399' },
-  medium: { label: 'Medium', color: '#F5B62D' },
-  high: { label: 'High', color: '#FB7185' },
-  'exam-soon': { label: 'Exam soon', color: '#F43F5E' },
+  low: { label: 'Low', color: '#059669' },
+  medium: { label: 'Medium', color: '#D97706' },
+  high: { label: 'High', color: '#E11D48' },
+  'exam-soon': { label: 'Exam soon', color: '#BE123C' },
 };
 
 export const REQUEST_STATUS = {
-  open: { label: 'Open', color: '#A78BFA' },
-  matched: { label: 'Matched', color: '#7C5CFF' },
-  accepted: { label: 'Accepted', color: '#22D3EE' },
-  'in-progress': { label: 'In progress', color: '#F5B62D' },
-  completed: { label: 'Completed', color: '#34D399' },
+  open: { label: 'Open', color: '#6366F1' },
+  matched: { label: 'Matched', color: '#4F46E5' },
+  accepted: { label: 'Accepted', color: '#0891B2' },
+  'in-progress': { label: 'In progress', color: '#D97706' },
+  completed: { label: 'Completed', color: '#059669' },
   cancelled: { label: 'Cancelled', color: '#64748B' },
 };
 
 export const SESSION_STATUS = {
-  scheduled: { label: 'Scheduled', color: '#A78BFA' },
-  'in-progress': { label: 'In progress', color: '#F5B62D' },
-  completed: { label: 'Completed', color: '#34D399' },
+  scheduled: { label: 'Scheduled', color: '#6366F1' },
+  'in-progress': { label: 'In progress', color: '#D97706' },
+  completed: { label: 'Completed', color: '#059669' },
   cancelled: { label: 'Cancelled', color: '#64748B' },
 };
 

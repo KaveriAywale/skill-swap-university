@@ -72,17 +72,17 @@ export const Button = forwardRef(function Button(
   ref
 ) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 focus-visible:outline-2 disabled:opacity-60 disabled:pointer-events-none';
+    'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:outline-2 disabled:opacity-60 disabled:pointer-events-none disabled:hover:translate-y-0';
   const variants = {
     primary:
-      'bg-lime text-midnight-950 hover:bg-lime-bright shadow-glow disabled:hover:bg-lime',
+      'bg-lime text-midnight-950 hover:bg-lime-bright shadow-glow hover:shadow-[0_0_0_1px_rgba(37,99,235,0.45),0_18px_40px_-12px_rgba(37,99,235,0.6)] disabled:hover:bg-lime disabled:hover:shadow-glow',
     secondary:
-      'border border-white/15 bg-white/5 text-ivory hover:bg-white/10',
+      'border border-white/15 bg-white/5 text-ivory hover:bg-white/10 hover:border-lime/40',
     ghost: 'text-ivory/80 hover:bg-white/10 hover:text-ivory',
     danger:
       'border border-rose/40 bg-rose/10 text-rose-300 hover:bg-rose/20',
     lavender:
-      'bg-lavender text-midnight-950 hover:bg-lavender-soft disabled:hover:bg-lavender',
+      'bg-lavender text-midnight-950 hover:bg-lavender-soft shadow-glow hover:shadow-[0_0_0_1px_rgba(79,70,229,0.45),0_18px_40px_-12px_rgba(79,70,229,0.6)] disabled:hover:bg-lavender',
   };
   const sizes = {
     sm: 'text-xs px-3 py-1.5',
@@ -168,11 +168,11 @@ export function Toggle({ checked, onChange, label }) {
     >
       <span
         className={`relative h-6 w-11 rounded-full border transition ${
-          checked ? 'border-lime/60 bg-lime/90' : 'border-white/15 bg-white/10'
+          checked ? 'border-lime/60 bg-lime/90' : 'border-white/15 bg-midnight-600'
         }`}
       >
         <span
-          className={`absolute top-0.5 h-5 w-5 rounded-full bg-midnight-950 transition-all ${
+          className={`absolute top-0.5 h-5 w-5 rounded-full bg-midnight-800 shadow-soft transition-all ${
             checked ? 'left-[22px]' : 'left-0.5'
           }`}
         />
@@ -328,7 +328,7 @@ export function ErrorState({ message, onRetry }) {
 
 /* ------------------------------ Progress ring ------------------------------ */
 
-export function ProgressRing({ value, size = 56, stroke = 6, color = '#C9F24B', track = 'rgba(255,255,255,0.08)', label }) {
+export function ProgressRing({ value, size = 56, stroke = 6, color = '#2563EB', track = 'rgba(15,23,42,0.08)', label }) {
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - Math.max(0, Math.min(1, value)));

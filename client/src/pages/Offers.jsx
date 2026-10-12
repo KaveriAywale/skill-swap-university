@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Plus, Pause, Play, Archive } from 'lucide-react';
 import Page from '../components/Page';
@@ -8,8 +8,8 @@ import { useToast } from '../context/ToastContext';
 import { CATEGORY_META } from '../lib/utils';
 
 const STATUS = {
-  active: { label: 'Active', color: '#34D399' },
-  paused: { label: 'Paused', color: '#F5B62D' },
+  active: { label: 'Active', color: '#059669' },
+  paused: { label: 'Paused', color: '#D97706' },
   withdrawn: { label: 'Withdrawn', color: '#64748B' },
 };
 
@@ -82,14 +82,14 @@ export default function Offers() {
       ) : data.length === 0 ? (
         <EmptyState
           title="You haven't offered any skills yet"
-          description="Teaching is how the community grows — publish your first offer."
+          description="Teaching is how the community grows â€” publish your first offer."
           action={<Button size="sm" onClick={() => navigate('/offers/new')}>Offer a skill</Button>}
         />
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((offer) => {
             const meta = CATEGORY_META[offer.skill?.category] || {};
-            const color = meta.color || '#A78BFA';
+            const color = meta.color || '#6366F1';
             const st = STATUS[offer.status] || STATUS.active;
             return (
               <Card key={offer._id} className="flex flex-col gap-3 p-5">
@@ -101,9 +101,9 @@ export default function Offers() {
                 </div>
                 <div>
                   <h3 className="font-display font-semibold">{offer.title}</h3>
-                  <p className="text-xs text-ivory/50">{offer.skill?.name} · {offer.level} · {offer.format}</p>
+                  <p className="text-xs text-ivory/50">{offer.skill?.name} Â· {offer.level} Â· {offer.format}</p>
                   {offer.verified ? (
-                    <Chip className="mt-2 !text-[11px] text-lime" color="#C9F24B">Assessment-verified</Chip>
+                    <Chip className="mt-2 !text-[11px] text-lime" color="#2563EB">Assessment-verified</Chip>
                   ) : null}
                 </div>
                 <p className="line-clamp-2 text-sm text-ivory/55">{offer.description}</p>
@@ -129,7 +129,7 @@ export default function Offers() {
 
       <div className="mt-8">
         <Link to="/discover" className="text-sm font-semibold text-lime hover:underline">
-          ← Browse students looking for your skills
+          â† Browse students looking for your skills
         </Link>
       </div>
     </Page>

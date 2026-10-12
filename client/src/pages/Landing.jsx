@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Compass,
@@ -26,16 +26,16 @@ const fadeUp = {
 };
 
 const HERO_PREVIEW = [
-  { name: 'Aarav', skill: 'React', emoji: '⚛️', hint: 'Available Thu 6 PM', place: '1F / 380m', color: '#7C5CFF' },
-  { name: 'Sana', skill: 'Arduino', emoji: '🤖', hint: 'Online · ready now', place: 'CS Lab / 90m', color: '#FB7185' },
-  { name: 'Priya', skill: 'MongoDB', emoji: '🍃', hint: 'Online · ready now', place: 'Library / 210m', color: '#22D3EE' },
+  { name: 'Aarav', skill: 'React', emoji: 'âš›ï¸', hint: 'Available Thu 6 PM', place: '1F / 380m', color: '#4F46E5' },
+  { name: 'Sana', skill: 'Arduino', emoji: 'ðŸ¤–', hint: 'Online Â· ready now', place: 'CS Lab / 90m', color: '#E11D48' },
+  { name: 'Priya', skill: 'MongoDB', emoji: 'ðŸƒ', hint: 'Online Â· ready now', place: 'Library / 210m', color: '#0891B2' },
 ];
 
 const STEPS = [
-  { icon: Search, title: 'Ask for help', text: 'Post a request for a skill you need — from exam prep to Python debugging.' },
+  { icon: Search, title: 'Ask for help', text: 'Post a request for a skill you need â€” from exam prep to Python debugging.' },
   { icon: CalendarClock, title: 'Match smartly', text: 'Our engine ranks peers by skill, availability and closeness, then shows you why.' },
   { icon: MessageCircle, title: 'Chat & schedule', text: 'Talk, agree on a time and meet online or at a campus spot.' },
-  { icon: Video, title: 'Learn together', text: 'Hold the session — live video for online, your chosen meeting area in person.' },
+  { icon: Video, title: 'Learn together', text: 'Hold the session â€” live video for online, your chosen meeting area in person.' },
 ];
 
 export default function Landing() {
@@ -71,14 +71,14 @@ export default function Landing() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="chip border-lime/30 bg-lime/10 text-lime">
-              <Sparkles size={13} /> Peer-to-peer learning · Your campus
+              <Sparkles size={13} /> Peer-to-peer learning Â· Your campus
             </span>
             <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl">
               Every student knows something.{' '}
               <span className="text-gradient">Every student needs something.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-ivory/65">
-              Skill Swap University connects students on campus who can teach each other — no
+              Skill Swap University connects students on campus who can teach each other â€” no
               credits, no cash, just peer learning done right.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -111,7 +111,7 @@ export default function Landing() {
 
               <div className="mt-4 overflow-hidden rounded-xl border border-white/10">
                 <div
-                  className="relative h-40 bg-[radial-gradient(circle_at_30%_40%,rgba(124,92,255,0.35),transparent_55%),radial-gradient(circle_at_75%_60%,rgba(201,242,75,0.28),transparent_50%),#17131F]"
+                  className="relative h-40 bg-[radial-gradient(circle_at_30%_40%,rgba(124,92,255,0.22),transparent_55%),radial-gradient(circle_at_75%_60%,rgba(37,99,235,0.20),transparent_50%),#EAF1FF]"
                 >
                   {HERO_PREVIEW.slice(0, 3).map((p, i) => (
                     <motion.span
@@ -124,7 +124,7 @@ export default function Landing() {
                     />
                   ))}
                   <span className="absolute left-[46%] top-[58%] flex h-3 w-3 rounded-full bg-lime shadow-glow" />
-                  <span className="absolute bottom-2 left-2 chip !text-[10px]">● live · 3 helpers near you</span>
+                  <span className="absolute bottom-2 left-2 chip !text-[10px]">â— live Â· 3 helpers near you</span>
                 </div>
               </div>
 
@@ -156,7 +156,7 @@ export default function Landing() {
 
               <div className="mt-4 flex items-center justify-between">
                 <p className="text-xs text-ivory/45">Match reason</p>
-                <p className="text-xs font-semibold text-lime">✓ Matches skill · ✓ Nearby</p>
+                <p className="text-xs font-semibold text-lime">âœ“ Matches skill Â· âœ“ Nearby</p>
               </div>
             </div>
             <div className="absolute -right-3 -top-3 rotate-6 rounded-xl bg-lime px-3 py-1.5 font-display text-xs font-bold text-midnight-950 shadow-glow">
@@ -171,7 +171,7 @@ export default function Landing() {
         <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">How matching works</h2>
           <p className="mt-3 text-ivory/60">
-            A transparent scoring system weighs skill fit, availability and distance — so you
+            A transparent scoring system weighs skill fit, availability and distance â€” so you
             understand exactly why a helper was recommended.
           </p>
         </motion.div>
@@ -218,7 +218,7 @@ export default function Landing() {
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
                   style={{ background: `${cat.color}18`, color: cat.color }}
                 >
-                  <span className="text-xl">{['💻', '🧠', '📐', '🎨', '🖥️', '🤖', '🗣️', '🎸'][i]}</span>
+                  <span className="text-xl">{['ðŸ’»', 'ðŸ§ ', 'ðŸ“', 'ðŸŽ¨', 'ðŸ–¥ï¸', 'ðŸ¤–', 'ðŸ—£ï¸', 'ðŸŽ¸'][i]}</span>
                 </span>
                 <div>
                   <p className="text-sm font-semibold leading-tight">{cat.name}</p>
@@ -283,7 +283,7 @@ export default function Landing() {
               </div>
             ))}
             <div className="mt-5 flex items-center gap-2 rounded-xl border border-lime/25 bg-lime/10 px-3 py-2 text-xs text-lime">
-              <BadgeCheck size={14} /> Badges: First Steps → Helpful Hand → Campus Legend
+              <BadgeCheck size={14} /> Badges: First Steps â†’ Helpful Hand â†’ Campus Legend
             </div>
           </motion.div>
         </div>
@@ -302,7 +302,7 @@ export default function Landing() {
             {[
               ['College email sign-up', 'Accounts are tied to an approved student email or identifier.'],
               ['Rated, reviewed, verified', 'Helper history, peer reviews and assessment-based skill checks stay visible.'],
-              ['Privacy-aware locations', 'We never expose exact GPS positions — only approximate campus labels.'],
+              ['Privacy-aware locations', 'We never expose exact GPS positions â€” only approximate campus labels.'],
             ].map(([t, d]) => (
               <motion.div key={t} {...fadeUp} className="card p-6">
                 <h3 className="font-display font-semibold">{t}</h3>
@@ -322,7 +322,7 @@ export default function Landing() {
             <span className="text-gradient"> Are you?</span>
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl text-ivory/60">
-            Join the peer learning community — find help tonight, teach someone tomorrow.
+            Join the peer learning community â€” find help tonight, teach someone tomorrow.
           </p>
           <div className="relative mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/register">
@@ -347,7 +347,7 @@ export default function Landing() {
           </div>
         </div>
         <p className="mt-6 text-center text-xs text-ivory/30">
-          © {new Date().getFullYear()} Skill Swap University · An MCA academic prototype
+          Â© {new Date().getFullYear()} Skill Swap University Â· An MCA academic prototype
         </p>
       </footer>
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { Camera, MapPin, LogOut, Save, Plus, X } from 'lucide-react';
 import Page from '../components/Page';
 import { Avatar, Button, Card, Chip, Field, Input, Select, Toggle, Skeleton } from '../components/ui';
@@ -181,7 +181,7 @@ export default function Settings() {
             <div className="text-sm text-ivory/50">
               <p className="font-semibold text-ivory">{user?.name}</p>
               <p>{user?.email}</p>
-              {user?.isDemo ? <Chip className="mt-1" color="#F5B62D">demo account</Chip> : null}
+              {user?.isDemo ? <Chip className="mt-1" color="#D97706">demo account</Chip> : null}
             </div>
           </div>
 
@@ -259,7 +259,7 @@ export default function Settings() {
             <div className="mt-4 flex flex-wrap gap-2">
               {availability.map((s, i) => (
                 <button key={i} type="button" onClick={() => setAvailability((a) => a.filter((_, idx) => idx !== i))} className="chip border-lime/40 text-lime">
-                  {s.day} {s.from}–{s.to} <X size={12} />
+                  {s.day} {s.from}â€“{s.to} <X size={12} />
                 </button>
               ))}
             </div>

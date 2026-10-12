@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ResponsiveContainer,
@@ -84,19 +84,19 @@ export default function Insights() {
     >
       {/* Stat tiles */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <StatTile icon={GraduationCap} label="Sessions taught" value={totals.taught} accent="#A78BFA" />
-        <StatTile icon={TrendingUp} label="Sessions learned" value={totals.learned} accent="#22D3EE" />
-        <StatTile icon={Target} label="Success rate" value={`${totals.successRate}%`} accent="#C9F24B" />
-        <StatTile icon={Flame} label="Karma earned" value={totals.karmaEarned} accent="#F5B62D" />
-        <StatTile icon={Star} label="Active offers" value={totals.activeOffers} accent="#34D399" />
-        <StatTile icon={XCircle} label="Cancelled" value={totals.cancelled} accent="#FB7185" />
+        <StatTile icon={GraduationCap} label="Sessions taught" value={totals.taught} accent="#4F46E5" />
+        <StatTile icon={TrendingUp} label="Sessions learned" value={totals.learned} accent="#0EA5E9" />
+        <StatTile icon={Target} label="Success rate" value={`${totals.successRate}%`} accent="#2563EB" />
+        <StatTile icon={Flame} label="Karma earned" value={totals.karmaEarned} accent="#D97706" />
+        <StatTile icon={Star} label="Active offers" value={totals.activeOffers} accent="#059669" />
+        <StatTile icon={XCircle} label="Cancelled" value={totals.cancelled} accent="#E11D48" />
       </div>
 
       {/* Karma over time */}
       <Card className="mt-6 p-6">
         <div className="flex items-center justify-between">
           <h2 className="section-title">Karma earned</h2>
-          <Chip color="#C9F24B">last {range === 'all' ? 'year' : range}</Chip>
+          <Chip color="#2563EB">last {range === 'all' ? 'year' : range}</Chip>
         </div>
         {chartData.length ? (
           <div className="mt-4 h-64">
@@ -104,18 +104,18 @@ export default function Insights() {
               <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="karmaFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#C9F24B" stopOpacity={0.5} />
-                    <stop offset="100%" stopColor="#C9F24B" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#2563EB" stopOpacity={0.45} />
+                    <stop offset="100%" stopColor="#2563EB" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-                <XAxis dataKey="label" tick={{ fill: 'rgba(246,239,228,0.4)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: 'rgba(246,239,228,0.4)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(15,23,42,0.08)" vertical={false} />
+                <XAxis dataKey="label" tick={{ fill: 'rgba(15,23,42,0.45)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: 'rgba(15,23,42,0.45)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip
-                  contentStyle={{ background: '#1B1630', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, fontSize: 12 }}
-                  labelStyle={{ color: 'rgba(246,239,228,0.6)' }}
+                  contentStyle={{ background: '#FFFFFF', border: '1px solid rgba(15,23,42,0.1)', borderRadius: 12, fontSize: 12, boxShadow: '0 10px 30px -12px rgba(15,23,42,0.3)' }}
+                  labelStyle={{ color: 'rgba(15,23,42,0.6)' }}
                 />
-                <Area type="monotone" dataKey="points" stroke="#C9F24B" strokeWidth={2} fill="url(#karmaFill)" name="Karma" />
+                <Area type="monotone" dataKey="points" stroke="#2563EB" strokeWidth={2} fill="url(#karmaFill)" name="Karma" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -132,14 +132,14 @@ export default function Insights() {
             <div className="mt-4 h-56">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={topSkills} layout="vertical" margin={{ left: 8, right: 16 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(15,23,42,0.08)" horizontal={false} />
                   <XAxis type="number" hide allowDecimals={false} />
-                  <YAxis type="category" dataKey="name" width={90} tick={{ fill: 'rgba(246,239,228,0.6)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <YAxis type="category" dataKey="name" width={90} tick={{ fill: 'rgba(15,23,42,0.6)', fontSize: 11 }} axisLine={false} tickLine={false} />
                   <Tooltip
-                    contentStyle={{ background: '#1B1630', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, fontSize: 12 }}
-                    cursor={{ fill: 'rgba(255,255,255,0.04)' }}
+                    contentStyle={{ background: '#FFFFFF', border: '1px solid rgba(15,23,42,0.1)', borderRadius: 12, fontSize: 12, boxShadow: '0 10px 30px -12px rgba(15,23,42,0.3)' }}
+                    cursor={{ fill: 'rgba(15,23,42,0.04)' }}
                   />
-                  <Bar dataKey="count" name="Sessions" radius={[0, 8, 8, 0]} fill="#A78BFA" />
+                  <Bar dataKey="count" name="Sessions" radius={[0, 8, 8, 0]} fill="#4F46E5" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -174,7 +174,7 @@ export default function Insights() {
 
       <div className="mt-6 text-center">
         <Link to="/leaderboard" className="text-sm font-semibold text-lime hover:underline">
-          See how you compare on the leaderboard →
+          See how you compare on the leaderboard â†’
         </Link>
       </div>
     </Page>

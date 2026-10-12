@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Sparkles, ShieldCheck, Award, ArrowLeft, CheckCircle2, XCircle } from 'lucide-react';
 import Page from '../components/Page';
 import { Button, Card, Chip, Field, Select, Textarea, Skeleton, StatusPill, SkillIcon, EmptyState, ProgressRing } from '../components/ui';
@@ -88,8 +88,8 @@ export default function Verification() {
           </button>
           <Card className="p-6">
             <div className="flex items-center gap-2">
-              <Chip color="#A78BFA"><Sparkles size={12} /> {assessment.mode === 'ai' ? 'AI assessment' : 'Demo assessment'}</Chip>
-              <Chip color="#C9F24B">{assessment.skill?.name}</Chip>
+              <Chip color="#6366F1"><Sparkles size={12} /> {assessment.mode === 'ai' ? 'AI assessment' : 'Demo assessment'}</Chip>
+              <Chip color="#2563EB">{assessment.skill?.name}</Chip>
             </div>
             <h1 className="mt-4 font-display text-2xl font-bold">Skill assessment</h1>
             <p className="mt-1 text-sm text-ivory/60">
@@ -108,7 +108,7 @@ export default function Verification() {
                     className="mt-2"
                     value={answers[q.id] || ''}
                     onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))}
-                    placeholder="Type your answer…"
+                    placeholder="Type your answerâ€¦"
                   />
                 </div>
               ))}
@@ -190,7 +190,7 @@ export default function Verification() {
                 <p className="mt-1 text-sm text-ivory/60">
                   {meta.aiEnabled
                     ? 'An AI assessor will generate and grade a short assessment.'
-                    : 'Demo mode is active — a transparent local scorer grades your answers. Set AI_PROVIDER to enable real AI.'}
+                    : 'Demo mode is active â€” a transparent local scorer grades your answers. Set AI_PROVIDER to enable real AI.'}
                 </p>
                 <div className="mt-4 flex flex-wrap items-end gap-3">
                   <div className="min-w-[200px] flex-1">
@@ -221,19 +221,19 @@ export default function Verification() {
                   const meta2 = CATEGORY_META[h.skill?.category] || {};
                   return (
                     <div key={h._id} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ background: `${meta2.color || '#A78BFA'}18`, color: meta2.color || '#A78BFA' }}>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ background: `${meta2.color || '#6366F1'}18`, color: meta2.color || '#6366F1' }}>
                         <SkillIcon name={h.skill?.icon} size={18} />
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="truncate font-semibold">{h.skill?.name}</p>
                         <p className="text-xs text-ivory/45">
-                          {h.status === 'evaluated' ? `Scored ${h.score}/100 · ${h.mode === 'ai' ? 'AI' : 'demo'}` : 'In progress'} · {timeAgo(h.createdAt)}
+                          {h.status === 'evaluated' ? `Scored ${h.score}/100 Â· ${h.mode === 'ai' ? 'AI' : 'demo'}` : 'In progress'} Â· {timeAgo(h.createdAt)}
                         </p>
                       </div>
                       {h.status === 'evaluated' ? (
-                        <StatusPill label={h.passed ? 'Passed' : 'Below pass'} color={h.passed ? '#34D399' : '#F5B62D'} />
+                        <StatusPill label={h.passed ? 'Passed' : 'Below pass'} color={h.passed ? '#059669' : '#D97706'} />
                       ) : (
-                        <Chip color="#A78BFA">In progress</Chip>
+                        <Chip color="#6366F1">In progress</Chip>
                       )}
                     </div>
                   );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CalendarDays, Clock, Play, CheckCheck, Star, X, Video, MapPin } from 'lucide-react';
 import Page from '../components/Page';
@@ -8,9 +8,9 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
 const STATUS_META = {
-  scheduled: { label: 'Scheduled', color: '#A78BFA' },
-  'in-progress': { label: 'In progress', color: '#F5B62D' },
-  completed: { label: 'Completed', color: '#34D399' },
+  scheduled: { label: 'Scheduled', color: '#6366F1' },
+  'in-progress': { label: 'In progress', color: '#D97706' },
+  completed: { label: 'Completed', color: '#059669' },
   cancelled: { label: 'Cancelled', color: '#64748B' },
 };
 
@@ -71,7 +71,7 @@ export default function SessionDetail() {
     setBusy('review');
     try {
       await api.post(`/sessions/${id}/review`, { rating: review.rating, comment: review.comment });
-      showToast('Review submitted — thank you!');
+      showToast('Review submitted â€” thank you!');
       setReview({ rating: 5, comment: '', open: false });
       await load();
     } catch (e) {
@@ -98,7 +98,7 @@ export default function SessionDetail() {
   return (
     <Page>
       <div className="mx-auto max-w-3xl">
-        <Link to="/sessions" className="mb-4 inline-flex items-center gap-1.5 text-sm text-ivory/60 hover:text-ivory">← Back to sessions</Link>
+        <Link to="/sessions" className="mb-4 inline-flex items-center gap-1.5 text-sm text-ivory/60 hover:text-ivory">â† Back to sessions</Link>
 
         <Card className="p-6">
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -106,8 +106,8 @@ export default function SessionDetail() {
               <h1 className="font-display text-2xl font-bold">{session.title}</h1>
               <div className="mt-2 flex flex-wrap items-center gap-2">
                 <StatusPill label={st.label} color={st.color} />
-                <Chip color="#A78BFA">{session.skill?.name}</Chip>
-                <Chip color="#F5B62D" className="capitalize">{session.format}</Chip>
+                <Chip color="#6366F1">{session.skill?.name}</Chip>
+                <Chip color="#D97706" className="capitalize">{session.format}</Chip>
               </div>
             </div>
             <div className="text-right text-sm text-ivory/60">
@@ -124,9 +124,9 @@ export default function SessionDetail() {
             <div>
               <p className="font-semibold">
                 {other?.name}
-                <span className="ml-2 text-sm font-normal text-ivory/50">{isSeeker ? '· Teaching you' : isHelper ? '· Learning from you' : ''}</span>
+                <span className="ml-2 text-sm font-normal text-ivory/50">{isSeeker ? 'Â· Teaching you' : isHelper ? 'Â· Learning from you' : ''}</span>
               </p>
-              <p className="text-xs text-ivory/45">{other?.department} · Year {other?.year} · {other?.karma} karma</p>
+              <p className="text-xs text-ivory/45">{other?.department} Â· Year {other?.year} Â· {other?.karma} karma</p>
             </div>
             <div className="ml-auto">
               <Link to={`/profile/${other?.id || other?._id}`} className="text-xs font-semibold text-lime hover:underline">Profile</Link>
@@ -141,7 +141,7 @@ export default function SessionDetail() {
           <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-5">
             {session.status === 'scheduled' && (
               <>
-                <Button size="sm" onClick={() => act('start', 'Session started — have a great lesson!')} icon={Play} loading={busy === 'start'}>
+                <Button size="sm" onClick={() => act('start', 'Session started â€” have a great lesson!')} icon={Play} loading={busy === 'start'}>
                   Start now
                 </Button>
                 <Button size="sm" variant="danger" icon={X} onClick={() => setCancelOpen(true)}>Cancel</Button>
@@ -165,12 +165,12 @@ export default function SessionDetail() {
               </Button>
             )}
             {session.status === 'completed' && data.myReview && (
-              <Chip color="#34D399">You reviewed this session</Chip>
+              <Chip color="#059669">You reviewed this session</Chip>
             )}
             {session.status === 'cancelled' && (
               <p className="text-sm text-ivory/50">
                 Cancelled {session.cancelledBy?.toString() === user?._id ? 'by you' : 'by your partner'}
-                {session.cancelReason ? <span> — {session.cancelReason}</span> : null}
+                {session.cancelReason ? <span> â€” {session.cancelReason}</span> : null}
               </p>
             )}
           </div>
@@ -182,7 +182,7 @@ export default function SessionDetail() {
           ) : null}
           {session.status === 'completed' && !data.bothConfirmed ? (
             <p className="mt-4 rounded-xl border border-white/10 bg-white/5 p-3 text-sm text-ivory/60">
-              Completion confirmed by one side — the other participant still needs to confirm.
+              Completion confirmed by one side â€” the other participant still needs to confirm.
             </p>
           ) : null}
         </Card>
@@ -221,7 +221,7 @@ export default function SessionDetail() {
               <p className="mt-1 text-sm text-ivory/55">The other participant will be notified.</p>
               <div className="mt-4">
                 <Field label="Reason (optional)">
-                  <Textarea rows={2} value={cancelReason} onChange={(e) => setCancelReason(e.target.value)} placeholder="Briefly explain…" maxLength={300} />
+                  <Textarea rows={2} value={cancelReason} onChange={(e) => setCancelReason(e.target.value)} placeholder="Briefly explainâ€¦" maxLength={300} />
                 </Field>
               </div>
               <div className="mt-4 flex justify-end gap-2">
@@ -237,6 +237,6 @@ export default function SessionDetail() {
 }
 
 function formatDate(iso) {
-  if (!iso) return '—';
+  if (!iso) return 'â€”';
   return new Date(iso).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 }

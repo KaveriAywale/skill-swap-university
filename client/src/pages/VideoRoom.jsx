@@ -229,7 +229,7 @@ export default function VideoRoom() {
                   <code className="rounded-lg bg-white/10 px-3 py-1 text-lime">{session.roomId}</code>
                 </div>
               ) : (
-                <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
+                <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-xs text-[#fff]">
                   {peerId.slice(0, 8)} {connecting ? '· connecting' : ''}
                 </div>
               )}
@@ -237,7 +237,7 @@ export default function VideoRoom() {
             {/* Local */}
             <div className="relative flex items-center justify-center bg-midnight-900">
               <video ref={localVideoRef} autoPlay playsInline muted className="h-full max-h-[420px] w-full object-contain" />
-              <span className="absolute bottom-3 left-3 rounded-full bg-black/60 px-3 py-1 text-xs text-white">You</span>
+              <span className="absolute bottom-3 left-3 rounded-full bg-black/60 px-3 py-1 text-xs text-[#fff]">You</span>
             </div>
           </div>
 

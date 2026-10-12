@@ -25,16 +25,16 @@ export default function CampusMap({ students = [], height = 220 }) {
       <svg viewBox="0 0 100 100" className="w-full" style={{ height }}>
         <defs>
           <radialGradient id="mapGlow" cx="50%" cy="40%" r="70%">
-            <stop offset="0%" stopColor="#2A2140" />
-            <stop offset="100%" stopColor="#17131F" />
+            <stop offset="0%" stopColor="#EAF1FF" />
+            <stop offset="100%" stopColor="#DCE7FB" />
           </radialGradient>
         </defs>
         <rect width="100" height="100" fill="url(#mapGlow)" />
-        <path d="M0 62 Q 30 46 50 60 T 100 54" stroke="#372D54" strokeWidth="1.4" fill="none" strokeDasharray="2 2" />
-        <path d="M20 100 Q 26 60 44 0" stroke="#372D54" strokeWidth="1.2" fill="none" strokeDasharray="2 2" />
-        <path d="M66 100 Q 60 50 78 0" stroke="#372D54" strokeWidth="1.2" fill="none" strokeDasharray="2 2" />
-        <rect x="46" y="36" width="12" height="9" rx="1.5" fill="#2A2140" stroke="#7C5CFF" strokeOpacity="0.5" />
-        <text x="52" y="43" textAnchor="middle" fill="#A78BFA" fontSize="2.4" dominantBaseline="middle">LIB</text>
+        <path d="M0 62 Q 30 46 50 60 T 100 54" stroke="#B9CBEC" strokeWidth="1.4" fill="none" strokeDasharray="2 2" />
+        <path d="M20 100 Q 26 60 44 0" stroke="#B9CBEC" strokeWidth="1.2" fill="none" strokeDasharray="2 2" />
+        <path d="M66 100 Q 60 50 78 0" stroke="#B9CBEC" strokeWidth="1.2" fill="none" strokeDasharray="2 2" />
+        <rect x="46" y="36" width="12" height="9" rx="1.5" fill="#FFFFFF" stroke="#2563EB" strokeOpacity="0.6" />
+        <text x="52" y="43" textAnchor="middle" fill="#2563EB" fontSize="2.4" dominantBaseline="middle">LIB</text>
       </svg>
 
       {SPOTS.map((spot, i) => {

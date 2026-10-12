@@ -20,17 +20,17 @@
   }
 
   ::selection {
-    background: rgba(201, 242, 75, 0.35);
+    background: rgba(37, 99, 235, 0.22);
   }
 
   :focus-visible {
-    outline: 2px solid var(--lime, #c9f24b);
+    outline: 2px solid var(--brand, #2563eb);
     outline-offset: 2px;
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: #372d54 transparent;
+    scrollbar-color: #c2d2ec transparent;
   }
 
   *::-webkit-scrollbar {
@@ -39,8 +39,12 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    background: #372d54;
+    background: #c2d2ec;
     border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #9db4dc;
   }
 }
 
@@ -50,11 +54,11 @@
   }
 
   .card {
-    @apply rounded-2xl border border-white/10 bg-midnight-800/70 shadow-card;
+    @apply rounded-2xl border border-white/10 bg-midnight-800 shadow-card;
   }
 
   .card-hover {
-    @apply transition-all duration-200 hover:border-lime/30 hover:shadow-card-hover hover:-translate-y-0.5;
+    @apply transition-all duration-300 hover:border-lime/40 hover:shadow-card-hover hover:-translate-y-1;
   }
 
   .chip {
@@ -66,7 +70,7 @@
   }
 
   .input-field {
-    @apply w-full rounded-xl border border-white/10 bg-midnight-900 px-3.5 py-2.5 text-sm text-ivory placeholder-ivory/30 transition focus:border-lime/50 focus:outline-none focus:ring-2 focus:ring-lime/20;
+    @apply w-full rounded-xl border border-white/15 bg-midnight-900 px-3.5 py-2.5 text-sm text-ivory placeholder-ivory/40 transition-all duration-200 focus:border-lime/60 focus:outline-none focus:ring-4 focus:ring-lime/15;
   }
 
   .label-field {
@@ -78,16 +82,16 @@
   }
 
   .icon-btn {
-    @apply flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-ivory transition hover:border-lime/40 hover:text-lime;
+    @apply flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-ivory transition-all duration-200 hover:-translate-y-0.5 hover:border-lime/50 hover:text-lime hover:shadow-soft;
   }
 
   .skeleton {
-    @apply animate-shimmer rounded-2xl bg-midnight-700/60;
+    @apply animate-shimmer rounded-2xl bg-midnight-700/70;
     background-image: linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0) 0,
-      rgba(255, 255, 255, 0.05) 40%,
-      rgba(255, 255, 255, 0) 80%
+      rgba(15, 23, 42, 0) 0,
+      rgba(15, 23, 42, 0.06) 40%,
+      rgba(15, 23, 42, 0) 80%
     );
     background-size: 800px 100%;
     background-repeat: no-repeat;

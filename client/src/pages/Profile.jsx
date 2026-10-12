@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Star, MapPin, BadgeCheck, Flame, MessageSquare, Settings, GraduationCap, Users } from 'lucide-react';
 import Page from '../components/Page';
@@ -66,7 +66,7 @@ export default function Profile() {
   return (
     <Page>
       <div className="card relative overflow-hidden">
-        <div className="h-28 bg-[radial-gradient(circle_at_20%_20%,rgba(124,92,255,0.5),transparent_60%),radial-gradient(circle_at_80%_40%,rgba(201,242,75,0.25),transparent_55%),#1F1830]" />
+        <div className="h-28 bg-[radial-gradient(circle_at_20%_20%,rgba(124,92,255,0.35),transparent_60%),radial-gradient(circle_at_80%_40%,rgba(37,99,235,0.30),transparent_55%),#E6EEFC]" />
         <div className="px-6 pb-6">
           <div className="-mt-10 flex flex-wrap items-end justify-between gap-3">
             <div className="flex items-end gap-4">
@@ -77,7 +77,7 @@ export default function Profile() {
                   {isMine ? <span className="ml-2 text-sm font-medium text-ivory/40">(you)</span> : null}
                 </h1>
                 <p className="text-sm text-ivory/55">
-                  {p.department} · Year {p.year} · {p.headline || 'Student'}
+                  {p.department} Â· Year {p.year} Â· {p.headline || 'Student'}
                 </p>
               </div>
             </div>
@@ -93,10 +93,10 @@ export default function Profile() {
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ivory/70">{p.bio || 'No bio yet.'}</p>
 
           <div className="mt-5 flex flex-wrap gap-2">
-            {p.avgRating ? <Chip color="#F5B62D"><Star size={12} /> {avg.toFixed(1)} rating</Chip> : null}
-            <Chip color="#34D399"><Users size={12} /> {p.stats?.completedSessions || 0} sessions</Chip>
-            {p.locationEnabled ? <Chip color="#A78BFA"><MapPin size={12} /> {p.locationLabel || 'On campus'}</Chip> : null}
-            {p.isDemo ? <Chip color="#F5B62D">demo profile</Chip> : null}
+            {p.avgRating ? <Chip color="#D97706"><Star size={12} /> {avg.toFixed(1)} rating</Chip> : null}
+            <Chip color="#059669"><Users size={12} /> {p.stats?.completedSessions || 0} sessions</Chip>
+            {p.locationEnabled ? <Chip color="#4F46E5"><MapPin size={12} /> {p.locationLabel || 'On campus'}</Chip> : null}
+            {p.isDemo ? <Chip color="#D97706">demo profile</Chip> : null}
           </div>
 
           <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -170,7 +170,7 @@ export default function Profile() {
                 ))}
               </div>
             ) : (
-              <p className="mt-3 text-sm text-ivory/50">No reviews yet — completed sessions unlock ratings.</p>
+              <p className="mt-3 text-sm text-ivory/50">No reviews yet â€” completed sessions unlock ratings.</p>
             )}
           </Card>
         </div>
@@ -185,7 +185,7 @@ export default function Profile() {
                 {(p.availability || []).map((a, i) => (
                   <p key={i} className="text-sm text-ivory/65">
                     <span className="inline-block w-9 font-semibold text-lavender">{a.day}</span>
-                    {a.from}–{a.to}
+                    {a.from}â€“{a.to}
                   </p>
                 ))}
               </div>
@@ -197,7 +197,7 @@ export default function Profile() {
             {p.badges?.length ? (
               <div className="mt-4 flex flex-wrap gap-2">
                 {p.badges.map((b) => (
-                  <span key={b.key} title={b.description} className="chip" style={{ borderColor: `${b.definition?.color || '#A78BFA'}55`, color: b.definition?.color }}>
+                  <span key={b.key} title={b.description} className="chip" style={{ borderColor: `${b.definition?.color || '#6366F1'}55`, color: b.definition?.color }}>
                     {b.definition?.name}
                   </span>
                 ))}
