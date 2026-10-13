@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 export function LogoMark({ size = 34 }) {
   return (
     <span
-      className="flex items-center justify-center rounded-xl bg-lime font-display font-extrabold text-midnight-950 shadow-glow"
+      className="flex items-center justify-center rounded-xl bg-gradient-to-br from-lime-bright via-lime to-lavender font-display font-extrabold text-[#fff] shadow-glow"
       style={{ width: size, height: size, fontSize: size * 0.42 }}
       aria-hidden="true"
     >
@@ -18,7 +18,7 @@ export default function Brand({ to = '/', sub = '' }) {
       <LogoMark />
       <span className="font-display text-lg font-bold leading-tight tracking-tight">
         Skill Swap
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-lime">
+        <span className="block bg-gradient-to-r from-lime to-lavender bg-clip-text text-[11px] font-semibold uppercase tracking-[0.18em] text-transparent">
           University{sub ? ` · ${sub}` : ''}
         </span>
       </span>

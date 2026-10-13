@@ -256,7 +256,7 @@ function Sidebar() {
             {({ isActive }) => (
               <>
                 <span
-                  className={`absolute left-0 top-1/2 h-5 w-1 -translate-y-1/2 rounded-r-full bg-lime transition-all ${
+                  className={`absolute left-0 top-1/2 h-5 w-1 -translate-y-1/2 rounded-r-full bg-gradient-to-b from-lime to-lavender transition-all ${
                     isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
                   }`}
                 />

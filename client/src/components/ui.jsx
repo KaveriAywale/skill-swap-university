@@ -403,7 +403,7 @@ export function Tabs({ tabs, active, onChange }) {
             key={value}
             onClick={() => onChange(value)}
             className={`rounded-lg px-3.5 py-1.5 text-sm font-medium transition ${
-              isActive ? 'bg-lime text-midnight-950' : 'text-ivory/70 hover:text-ivory'
+              isActive ? 'bg-gradient-to-r from-lime to-lavender text-[#fff] shadow-soft' : 'text-ivory/70 hover:text-ivory'
             }`}
           >
             {label}

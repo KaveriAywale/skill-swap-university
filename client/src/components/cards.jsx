@@ -25,7 +25,11 @@ export function SkillCard({ skill, offerCount = 0, children }) {
   const meta = CATEGORY_META[skill?.category] || { name: skill?.category };
   const color = meta.color || '#6366F1';
   return (
-    <Card hover className="group flex h-full flex-col gap-3 p-5">
+    <Card hover className="group relative flex h-full flex-col gap-3 overflow-hidden p-5">
+      <span
+        className="pointer-events-none absolute inset-x-0 top-0 h-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ background: `linear-gradient(90deg, ${color}, transparent)` }}
+      />
       <div className="flex items-start justify-between">
         <span
           className="flex h-11 w-11 items-center justify-center rounded-xl border"
@@ -62,7 +66,8 @@ export function StudentCard({ student }) {
   const verified = (student.verifiedSkills || []).length;
 
   return (
-    <Card hover className="flex h-full flex-col p-5">
+    <Card hover className="group relative flex h-full flex-col overflow-hidden p-5">
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-lime via-accent-cyan to-lavender opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="flex items-start gap-3">
         <Link to={`/profile/${student.id}`}>
           <Avatar src={student.avatar} name={student.name} size={52} />
@@ -127,7 +132,11 @@ export function RequestCard({ request, compact = false }) {
 
   return (
     <Link to={`/requests/${request._id}`} className="block">
-      <Card hover className="group flex h-full flex-col gap-3 p-5">
+      <Card hover className="group relative flex h-full flex-col gap-3 overflow-hidden p-5">
+        <span
+          className="pointer-events-none absolute inset-x-0 top-0 h-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{ background: `linear-gradient(90deg, ${color}, transparent)` }}
+        />
         <div className="flex items-center justify-between gap-2">
           <span
             className="flex h-9 w-9 items-center justify-center rounded-lg"

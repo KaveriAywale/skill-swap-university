@@ -79,7 +79,8 @@ export default function Dashboard() {
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
-            {greeting()}, {user?.name?.split(' ')[0]} <SkillIcon name="Sparkles" size={18} className="inline text-lime" />
+            {greeting()}, <span className="text-gradient">{user?.name?.split(' ')[0]}</span>{' '}
+            <SkillIcon name="Sparkles" size={18} className="inline text-lime" />
           </h1>
           <p className="mt-1 text-sm text-ivory/55">
             {user?.headline || `Let's find something to learn or share today.`}
@@ -100,10 +101,10 @@ export default function Dashboard() {
         <div className="space-y-6 lg:col-span-2">
           {/* Stats strip */}
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <StatCard icon={Flame} label="Karma" value={user?.karma ?? 0} to="/leaderboard" />
-            <StatCard icon={Video} label="Completed sessions" value={user?.stats?.completedSessions ?? 0} to="/sessions" />
-            <StatCard icon={Trophy} label="Badges" value={karmaBadges.length} to="/leaderboard" />
-            <StatCard icon={MessageSquare} label="Conversations" value={data.conversations?.length ?? 0} to="/messages" />
+            <StatCard icon={Flame} label="Karma" value={user?.karma ?? 0} to="/leaderboard" tone="karma" />
+            <StatCard icon={Video} label="Completed sessions" value={user?.stats?.completedSessions ?? 0} to="/sessions" tone="sessions" />
+            <StatCard icon={Trophy} label="Badges" value={karmaBadges.length} to="/leaderboard" tone="badges" />
+            <StatCard icon={MessageSquare} label="Conversations" value={data.conversations?.length ?? 0} to="/messages" tone="messages" />
           </div>
 
           {/* Recommended matches */}
@@ -278,15 +279,23 @@ export default function Dashboard() {
   );
 }
 
-function StatCard({ icon: Icon, label, value, to }) {
+function StatCard({ icon: Icon, label, value, to, tone = 'sessions' }) {
+  const TONES = {
+    karma: 'from-amber-400 to-orange-500',
+    sessions: 'from-lime-bright to-accent-cyan',
+    badges: 'from-violet-500 to-fuchsia-500',
+    messages: 'from-emerald-400 to-teal-500',
+  };
+  const gradient = TONES[tone] || TONES.sessions;
   return (
     <Link to={to}>
-      <Card hover className="p-4">
-        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-lime/15 text-lime">
+      <Card hover className="group relative overflow-hidden p-4">
+        <span className={`pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-gradient-to-br ${gradient} opacity-20 blur-2xl transition-opacity duration-300 group-hover:opacity-40`} />
+        <span className={`relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-[#fff] shadow-soft`}>
           <Icon size={18} />
         </span>
-        <p className="mt-3 font-display text-2xl font-bold">{value}</p>
-        <p className="text-xs text-ivory/50">{label}</p>
+        <p className="relative mt-3 font-display text-2xl font-bold">{value}</p>
+        <p className="relative text-xs text-ivory/50">{label}</p>
       </Card>
     </Link>
   );

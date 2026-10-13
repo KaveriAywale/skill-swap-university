@@ -4,10 +4,10 @@ import { Flame, Video, ShieldCheck, Sparkles } from 'lucide-react';
 import { LogoMark } from './Brand';
 
 const HIGHLIGHTS = [
-  { icon: Sparkles, title: 'Smart matching', text: 'Ranked by skill, availability and closeness — with visible reasons.' },
-  { icon: Video, title: 'Learn together', text: 'Chat, schedule and meet online or at a campus spot.' },
-  { icon: Flame, title: 'Earn karma', text: 'Help peers, unlock badges and climb the leaderboard.' },
-  { icon: ShieldCheck, title: 'Privacy first', text: 'Campus-only, with fuzzy locations — never exact GPS.' },
+  { icon: Sparkles, title: 'Smart matching', text: 'Ranked by skill, availability and closeness — with visible reasons.', chip: 'bg-lime/15 text-lime' },
+  { icon: Video, title: 'Learn together', text: 'Chat, schedule and meet online or at a campus spot.', chip: 'bg-accent-cyan/15 text-accent-cyan' },
+  { icon: Flame, title: 'Earn karma', text: 'Help peers, unlock badges and climb the leaderboard.', chip: 'bg-accent-amber/15 text-accent-amber' },
+  { icon: ShieldCheck, title: 'Privacy first', text: 'Campus-only, with fuzzy locations — never exact GPS.', chip: 'bg-lavender/15 text-lavender' },
 ];
 
 export default function AuthShell({ title, subtitle, children, footer, side }) {
@@ -71,7 +71,7 @@ export default function AuthShell({ title, subtitle, children, footer, side }) {
             </p>
 
             <ul className="mt-8 space-y-3">
-              {HIGHLIGHTS.map(({ icon: Icon, title: t, text }, i) => (
+              {HIGHLIGHTS.map(({ icon: Icon, title: t, text, chip }, i) => (
                 <motion.li
                   key={t}
                   initial={{ opacity: 0, x: 18 }}
@@ -79,7 +79,7 @@ export default function AuthShell({ title, subtitle, children, footer, side }) {
                   transition={{ delay: 0.15 + i * 0.1 }}
                   className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3.5 backdrop-blur-sm"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-lime/15 text-lime">
+                  <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${chip}`}>
                     <Icon size={17} />
                   </span>
                   <span>

@@ -69,7 +69,7 @@ export default function Discover() {
               onClick={() => setView(key)}
               aria-label={label}
               className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm transition ${
-                view === key ? 'bg-lime text-midnight-950' : 'text-ivory/70 hover:text-ivory'
+                view === key ? 'bg-gradient-to-r from-lime to-lavender text-[#fff] shadow-soft' : 'text-ivory/70 hover:text-ivory'
               }`}
             >
               <Icon size={16} /> <span className="hidden sm:inline">{label}</span>
@@ -156,8 +156,12 @@ export default function Discover() {
                 setCategory(active ? '' : cat.key);
                 setSkill('');
               }}
-              className="chip transition"
-              style={active ? { borderColor: `${meta?.color}66`, background: `${meta?.color}1E`, color: meta?.color } : undefined}
+              className={`chip transition hover:-translate-y-0.5 ${active ? 'font-semibold shadow-soft' : ''}`}
+              style={{
+                borderColor: `${meta?.color}${active ? '66' : '2E'}`,
+                background: `${meta?.color}${active ? '1E' : '0F'}`,
+                color: meta?.color,
+              }}
             >
               <SkillIcon name={meta?.icon} size={14} />
               {cat.name}

@@ -95,6 +95,7 @@ Skill Swap University/
 │  │  ├─ App.jsx           # routes
 │  │  └─ main.jsx
 │  └─ .env.example
+├─ scripts/dev.js          # runs the API + client together (npm run dev)
 └─ README.md
 ```
 
@@ -109,10 +110,19 @@ Skill Swap University/
 
 ## Quick start (Windows / PowerShell)
 
-From the repository root you can install everything and run each app:
+From the repository root you can install everything and run both apps together:
 
 ```powershell
 npm run setup        # installs server/ and client/ dependencies
+npm run dev          # starts BOTH the API (5000) and the web app (5173)
+```
+
+Then open <http://localhost:5173>. `npm run dev` runs the backend and frontend
+side by side (no extra dependency) and stops both when you press `Ctrl+C`.
+
+Prefer separate terminals? Run each app on its own:
+
+```powershell
 npm run server       # backend  -> http://localhost:5000
 npm run client       # frontend -> http://localhost:5173  (separate terminal)
 ```
@@ -156,7 +166,7 @@ vars are required for local development.
 | `NODE_ENV` | `development` | `test` disables request logging and uses in-memory DB in tests |
 | `PORT` | `5000` | API + Socket.IO port |
 | `CLIENT_URL` | `http://localhost:5173` | Used for links/CORS |
-| `CORS_ORIGINS` | `http://localhost:5173` | Comma-separated allowed origins |
+| `CORS_ORIGINS` | `http://localhost:5173,http://127.0.0.1:5173` | Comma-separated allowed origins |
 | `MONGODB_URI` | `mongodb://127.0.0.1:27017/skill_swap_university` | Local or Atlas URI |
 | `JWT_SECRET` | (dev placeholder) | **Set a long random value** |
 | `JWT_EXPIRES_IN` | `7d` | Token lifetime |
@@ -349,8 +359,13 @@ except `auth/register` and `auth/login`.
 
 ## Troubleshooting
 
+- **Registration fails / "Registration failed"** — the most common cause is the
+  **backend not running**. Start it (`npm run dev` from the root, or `npm run
+  server`) and make sure MongoDB is up. The frontend proxies `/api` to port 5000,
+  so if only the client is running, every request fails.
 - **`Cannot reach the server`** — ensure the backend is running on port 5000 and
-  that `CORS_ORIGINS` includes `http://localhost:5173`.
+  that `CORS_ORIGINS` includes the URL you opened (e.g. `http://localhost:5173`
+  **and** `http://127.0.0.1:5173`).
 - **Mongo connection refused** — start MongoDB (`mongod`, Docker, or Atlas) and
   confirm `MONGODB_URI`. The API exits on a failed startup connection.
 - **Seed fails** — the seeder needs a reachable MongoDB; run it after the DB is up.
