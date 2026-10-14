@@ -8,6 +8,23 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [skills, setSkills] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [backendOnline, setBackendOnline] = useState(true);
+
+  const checkBackend = useCallback(async () => {
+    try {
+      const res = await api.get('/health');
+      const ok = res?.data && typeof res.data === 'object' && res.data.success === true;
+      setBackendOnline(ok);
+      return ok;
+    } catch {
+      setBackendOnline(false);
+      return false;
+    }
+  }, []);
+
+  useEffect(() => {
+    checkBackend();
+  }, [checkBackend]);
 
   const fetchCatalog = useCallback(async () => {
     try {
@@ -37,11 +54,16 @@ export function AuthProvider({ children }) {
   const login = useCallback(
     async (email, password) => {
       const res = await api.post('/auth/login', { email, password });
-      const { token, user: u } = res.data.data;
-      setToken(token);
-      setUser(u);
+      const data = res.data?.data;
+      if (!data?.token || !data?.user) {
+        setBackendOnline(false);
+        throw new Error('The server did not respond as expected. Is the backend running on port 5000?');
+      }
+      setBackendOnline(true);
+      setToken(data.token);
+      setUser(data.user);
       await fetchCatalog();
-      return u;
+      return data.user;
     },
     [fetchCatalog]
   );
@@ -49,11 +71,16 @@ export function AuthProvider({ children }) {
   const register = useCallback(
     async (payload) => {
       const res = await api.post('/auth/register', payload);
-      const { token, user: u } = res.data.data;
-      setToken(token);
-      setUser(u);
+      const data = res.data?.data;
+      if (!data?.token || !data?.user) {
+        setBackendOnline(false);
+        throw new Error('The server did not respond as expected. Is the backend running on port 5000?');
+      }
+      setBackendOnline(true);
+      setToken(data.token);
+      setUser(data.user);
       await fetchCatalog();
-      return u;
+      return data.user;
     },
     [fetchCatalog]
   );
@@ -77,13 +104,15 @@ export function AuthProvider({ children }) {
       skills,
       categories,
       isAuthenticated: Boolean(user),
+      backendOnline,
+      checkBackend,
       login,
       register,
       logout,
       refresh,
       setUser,
     }),
-    [user, loading, skills, categories, login, register, logout, refresh]
+    [user, loading, skills, categories, backendOnline, checkBackend, login, register, logout, refresh]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
