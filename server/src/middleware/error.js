@@ -31,6 +31,13 @@ function errorHandler(err, req, res, _next) {
     error = ApiError.badRequest(`Invalid value for ${err.path}`);
   }
 
+  // Body parser (malformed/oversized JSON) — report as a client error, not 500.
+  if (err && (err.type === 'entity.parse.failed' || err.type === 'entity.too.large')) {
+    error = ApiError.badRequest(
+      err.type === 'entity.too.large' ? 'Request body is too large' : 'Request body is not valid JSON'
+    );
+  }
+
   if (err && err.code === 11000) {
     const field = Object.keys(err.keyValue || {})[0] || 'field';
     error = ApiError.conflict(`A record with that ${field} already exists`);
@@ -48,10 +55,14 @@ function errorHandler(err, req, res, _next) {
     console.error('[error]', err);
   }
 
-  const payload = {
-    success: false,
-    message: isOperational ? error.message : 'Something went wrong',
-  };
+  // In development, expose the real reason for unexpected (5xx) errors instead
+  // of the opaque "Something went wrong", so problems are actually debuggable.
+  let message;
+  if (isOperational) message = error.message;
+  else if (env.isProduction) message = 'Something went wrong';
+  else message = `${err.name || 'Error'}: ${err.message}`;
+
+  const payload = { success: false, message };
   if (error.details) payload.details = error.details;
   if (!env.isProduction && !isOperational) payload.stack = err.stack;
 
