@@ -22,17 +22,17 @@ app.use(
   })
 );
 
-// Browsers send an `Origin` header on cross- and same-site POST/PATCH/DELETE
-// requests. During local development the Vite dev server may fall back to a
-// different port (5174, 5175, ...) when 5173 is busy, so accept any loopback
-// origin in development. Production still uses the explicit allow-list.
-const isLoopbackOrigin = (origin) =>
-  !env.isProduction && /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(origin);
+// Browsers send an `Origin` header on POST/PATCH/DELETE requests. In local
+// development the app can be opened via the Vite "Local" URL (localhost/127
+// .0.0.1) or the "Network" URL (a LAN IP such as 192.168.x.x), and the port
+// may change when 5173 is busy. So during development allow any origin.
+// Production still enforces the explicit CORS_ORIGINS allow-list.
+const allowAnyDevOrigin = !env.isProduction;
 
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || env.corsOrigins.includes(origin) || isLoopbackOrigin(origin)) {
+      if (!origin || env.corsOrigins.includes(origin) || allowAnyDevOrigin) {
         return callback(null, true);
       }
       const err = new Error('Origin not allowed by CORS');
