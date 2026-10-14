@@ -117,8 +117,12 @@ npm run setup        # installs server/ and client/ dependencies
 npm run dev          # starts BOTH the API (5000) and the web app (5173)
 ```
 
-Then open <http://localhost:5173>. `npm run dev` runs the backend and frontend
-side by side (no extra dependency) and stops both when you press `Ctrl+C`.
+Then open the `Local` URL that Vite prints (usually <http://localhost:5173>).
+`npm run dev` runs the backend and frontend side by side (no extra dependency)
+and stops both when you press `Ctrl+C`. If port **5000 is already busy** (for
+example an old server is still running), it automatically picks the next free
+port and points the frontend proxy at it — so you can just run it again without
+hunting for stray processes.
 
 Prefer separate terminals? Run each app on its own:
 
@@ -359,13 +363,18 @@ except `auth/register` and `auth/login`.
 
 ## Troubleshooting
 
-- **Registration fails / "Registration failed"** — the most common cause is the
-  **backend not running**. Start it (`npm run dev` from the root, or `npm run
-  server`) and make sure MongoDB is up. The frontend proxies `/api` to port 5000,
-  so if only the client is running, every request fails.
-- **`Cannot reach the server`** — ensure the backend is running on port 5000 and
-  that `CORS_ORIGINS` includes the URL you opened (e.g. `http://localhost:5173`
+- **Registration fails / "Registration failed" / "Something went wrong"** — the
+  most common cause is the **backend not running** (or a stale server holding
+  port 5000). Start everything with `npm run dev` from the repository root and
+  make sure MongoDB is up. The app shows a red banner when it cannot reach the
+  API. If port 5000 is busy, `npm run dev` automatically uses a free port and
+  points the proxy at it.
+- **`Cannot reach the server`** — ensure the backend is running and that
+  `CORS_ORIGINS` includes the URL you opened (e.g. `http://localhost:5173`
   **and** `http://127.0.0.1:5173`).
+- **`port 5000 is already in use`** — an old server is still running. Easiest
+  fix: run `npm run dev` from the root, which picks another free port. Or stop
+  the stray process (`Get-Process node | Stop-Process` on Windows).
 - **Mongo connection refused** — start MongoDB (`mongod`, Docker, or Atlas) and
   confirm `MONGODB_URI`. The API exits on a failed startup connection.
 - **Seed fails** — the seeder needs a reachable MongoDB; run it after the DB is up.
